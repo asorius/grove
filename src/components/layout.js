@@ -8,9 +8,25 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-
-import Header from "./header"
+import { createMuiTheme } from "@material-ui/core/styles"
+import { ThemeProvider } from "@material-ui/styles"
+import CssBaseline from "@material-ui/core/CssBaseline"
 import "./layout.css"
+import Navbar from "./navbar"
+
+import Fab from "@material-ui/core/Fab"
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp"
+import ScrollTop from "./styled/scrollTop"
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#FFC11E",
+    },
+    secondary: {
+      main: "#6a41f2",
+    },
+  },
+})
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -18,29 +34,27 @@ const Layout = ({ children }) => {
       site {
         siteMetadata {
           title
+          description
+          subTitle
         }
       }
     }
   `)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
+    <div>
+      <ThemeProvider theme={theme}>
+        <CssBaseline></CssBaseline>
+        <Navbar siteTitle={data.site.siteMetadata.title} />
+        <div id="back-to-top-anchor"></div>
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
-    </>
+        <ScrollTop>
+          <Fab color="secondary" size="large" aria-label="scroll back to top">
+            <KeyboardArrowUpIcon />
+          </Fab>
+        </ScrollTop>
+      </ThemeProvider>
+    </div>
   )
 }
 
