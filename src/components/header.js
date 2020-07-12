@@ -91,6 +91,11 @@ const Header = ({ siteTitle, subTitle, description }) => {
               >
                 {description}
               </Typography>
+              <a href="#Contacts">
+                <Button variant="contained" color="primary" size="large">
+                  Contact us!
+                </Button>
+              </a>
             </Container>
           </Grid>
           <Grid

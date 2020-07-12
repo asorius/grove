@@ -17,21 +17,20 @@ export default function Template({
   const chooseImg = src => {
     setImg(src)
   }
-  const { markdownRemark } = data // data.markdownRemark holds your post data
+  const { contentfulProperty } = data // data.markdownRemark holds your post data
   const {
-    frontmatter: {
-      title,
-      date,
-      images,
-      price,
-      available,
-      city,
-      address,
-      pets,
-      roomsize,
-    },
-    html,
-  } = markdownRemark
+    addDate,
+    createdAt,
+    furnished,
+    houseshare,
+    location,
+    name,
+    photos,
+    price,
+    size,
+    type,
+  } = contentfulProperty
+  console.log(contentfulProperty)
   return (
     <Layout>
       <Container style={{ padding: "2rem" }}>
@@ -46,10 +45,11 @@ export default function Template({
               display: "flex",
             }}
           >
-            {images.map(el => (
+            testing bitch
+            {photos.map(el => (
               <div
                 style={{
-                  background: `url(${el})`,
+                  background: `url(${el.fluid.src})`,
                   height: "95%",
                   minWidth: "30rem",
                   backgroundSize: "cover",
@@ -59,7 +59,7 @@ export default function Template({
                 }}
                 onClick={() => {
                   handleOpen()
-                  chooseImg(el)
+                  chooseImg(el.fluid.src)
                 }}
               ></div>
             ))}
@@ -84,29 +84,29 @@ export default function Template({
           onClick={handleClose}
         ></div>
       </Modal>
-      <div
-        className="blog-post-content"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
     </Layout>
   )
 }
 export const pageQuery = graphql`
-  query($slug: String!) {
-    markdownRemark(frontmatter: { slug: { eq: $slug } }) {
-      html
-      frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        slug
+  query {
+    contentfulProperty {
+      addDate
+      contentful_id
+      createdAt
+      furnished
+      houseshare
+      location
+      name
+      photos {
+        description
         title
-        images
-        price
-        available
-        city
-        address
-        pets
-        roomSize
+        fluid {
+          src
+        }
       }
+      price
+      size
+      type
     }
   }
 `
