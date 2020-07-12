@@ -1,6 +1,9 @@
 import PropTypes from "prop-types"
 import React from "react"
 import HeroBg from "../images/hero-image-edited.jpg"
+
+import { graphql, useStaticQuery } from "gatsby"
+
 import {
   Typography,
   Button,
@@ -13,6 +16,33 @@ import {
 import TopProperties from "./topProperties"
 import TopPropertiesHorizontal from "./topPropertiesHorizontal"
 const Header = ({ siteTitle, subTitle, description }) => {
+  const {
+    allContentfulProperty: { edges: items },
+  } = useStaticQuery(
+    graphql`
+      query {
+        allContentfulProperty {
+          edges {
+            node {
+              addDate
+              price
+              contentful_id
+              name
+              location
+              photos {
+                title
+                fluid {
+                  src
+                }
+              }
+              createdAt(fromNow: true)
+            }
+          }
+        }
+      }
+    `
+  )
+  console.log(items)
   return (
     <div
       style={{
@@ -142,7 +172,7 @@ const Header = ({ siteTitle, subTitle, description }) => {
                     <Hidden smDown>
                       <Hidden mdDown>
                         <Grid item>
-                          <TopProperties></TopProperties>
+                          <TopProperties items={items}></TopProperties>
                         </Grid>
                       </Hidden>
                       <Hidden lgUp>
@@ -176,5 +206,16 @@ Header.defaultProps = {
   siteTitle: ``,
   description: ``,
 }
-
+// export const pageQuery = graphql`
+//   query {
+//     allContentfulProperty {
+//       edges {
+//         node {
+//           addDate
+//           price
+//         }
+//       }
+//     }
+//   }
+// `
 export default Header

@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function PreviewCard({ img }) {
+export default function PreviewCard({ img, content }) {
   const classes = useStyles()
   return (
     <div style={{ width: "100%", minWidth: "18rem" }}>
@@ -45,13 +45,13 @@ export default function PreviewCard({ img }) {
         <Card className={classes.root}>
           <div className={classes.details}>
             <CardContent className={classes.content}>
-              <Typography variant="body1">500$ PCM</Typography>
-              <Typography variant="body1">2 Beds</Typography>
+              <Typography variant="body1">{content.price} pcm</Typography>
+              <Typography variant="body1">{content.name}</Typography>
               <Typography variant="body1" gutterBottom>
-                Stafford
+                {content.location}
               </Typography>
               <Typography variant="body2" color="textSecondary">
-                added 5 days ago
+                added {content.createdAt}
               </Typography>
             </CardContent>
           </div>

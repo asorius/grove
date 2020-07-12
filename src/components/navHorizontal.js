@@ -25,8 +25,8 @@ export default function HorizontalNavigation() {
         color: "white",
       }}
     >
-      {navbarList.map(item => (
-        <a href={`#${item}`}>
+      {navbarList.map((item, i) => (
+        <a href={`#${item}`} key={i + 301}>
           <Button size="small" className={classes.root}>
             <Typography variant="body1">{item}</Typography>
           </Button>
