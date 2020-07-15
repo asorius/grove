@@ -19,7 +19,6 @@ export default function Template({
   }
   const { contentfulProperty } = data // data.markdownRemark holds your post data
   const {
-    addDate,
     createdAt,
     furnished,
     houseshare,
@@ -45,8 +44,12 @@ export default function Template({
               display: "flex",
             }}
           >
-            testing bitch
-            {photos.map(el => (
+            {location}
+            {name}
+            {price}
+            {type}
+            {createdAt}
+            {photos.map((el, i) => (
               <div
                 style={{
                   background: `url(${el.fluid.src})`,
@@ -61,6 +64,7 @@ export default function Template({
                   handleOpen()
                   chooseImg(el.fluid.src)
                 }}
+                key={i + 40}
               ></div>
             ))}
           </Box>
@@ -88,11 +92,10 @@ export default function Template({
   )
 }
 export const pageQuery = graphql`
-  query {
-    contentfulProperty {
+  query($slug: String!) {
+    contentfulProperty(contentful_id: { eq: $slug }) {
       addDate
       contentful_id
-      createdAt
       furnished
       houseshare
       location
@@ -107,6 +110,7 @@ export const pageQuery = graphql`
       price
       size
       type
+      createdAt(formatString: "DD MMMM YYYY")
     }
   }
 `

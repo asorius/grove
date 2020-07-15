@@ -15,7 +15,6 @@ export default function Contacts() {
         container
         justify="space-between"
         style={{ position: "relative", minHeight: "50vh" }}
-        xs={12}
       >
         <Grid item md={4} sm={6} xs={12} style={{ zIndex: 2 }}>
           <Box m={1}>

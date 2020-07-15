@@ -2,7 +2,7 @@ import React from "react"
 import { Paper, Divider } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import StyledCardSmall from "./styled/styledCardSmall"
-
+import { Link } from "gatsby"
 const useStyles = makeStyles({
   root: {
     maxHeight: "15rem",
@@ -35,7 +35,7 @@ const useStyles = makeStyles({
     padding: "1rem",
   },
 })
-export default function SimplePaper() {
+export default function TopHorizontal({ items }) {
   const classes = useStyles()
   const [mouseScrollActive, setMouseScrollActive] = React.useState(false)
   const [startingMousePosition, setStartingMousePosition] = React.useState(0)
@@ -80,23 +80,27 @@ export default function SimplePaper() {
           }
         }}
       >
-        {[...Array(5)].map((x, i) => {
+        {items.map(({ node }, i) => {
           if (i < 5) {
             return (
-              <>
+              <Link to={`/${node.contentful_id}`} key={i + 200}>
                 <StyledCardSmall
                   key={i}
-                  img={"https://source.unsplash.com/random"}
+                  img={node.photos[0].fluid.src}
+                  content={node}
                 />
-                <Divider orientation="vertical" flexItem />
-              </>
+                <Divider orientation="vertical" flexItem></Divider>
+              </Link>
             )
           } else {
             return (
-              <StyledCardSmall
-                key={i}
-                img={"https://source.unsplash.com/random"}
-              />
+              <Link to={`/${node.contentful_id}`} key={i + 200}>
+                <StyledCardSmall
+                  key={i}
+                  img={node.photos[0].fluid.src}
+                  content={node}
+                />
+              </Link>
             )
           }
         })}

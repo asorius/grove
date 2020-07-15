@@ -24,7 +24,6 @@ const Header = ({ siteTitle, subTitle, description }) => {
         allContentfulProperty {
           edges {
             node {
-              addDate
               price
               contentful_id
               name
@@ -35,14 +34,13 @@ const Header = ({ siteTitle, subTitle, description }) => {
                   src
                 }
               }
-              createdAt(fromNow: true)
+              createdAt(formatString: "")
             }
           }
         }
       }
     `
   )
-  console.log(items)
   return (
     <div
       style={{
@@ -62,7 +60,6 @@ const Header = ({ siteTitle, subTitle, description }) => {
           spacing={0}
           alignItems="stretch"
           style={{ height: "100%" }}
-          centered
         >
           <Grid
             item
@@ -177,7 +174,9 @@ const Header = ({ siteTitle, subTitle, description }) => {
                       </Hidden>
                       <Hidden lgUp>
                         <Grid item>
-                          <TopPropertiesHorizontal></TopPropertiesHorizontal>
+                          <TopPropertiesHorizontal
+                            items={items}
+                          ></TopPropertiesHorizontal>
                         </Grid>
                       </Hidden>
                     </Hidden>

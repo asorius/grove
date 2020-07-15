@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     },
   },
 })
-export default function SimplePaper({ items }) {
+export default function TopProperties({ items }) {
   const classes = useStyles()
   const [mouseScrollActive, setMouseScrollActive] = React.useState(false)
   const [startingMousePosition, setStartingMousePosition] = React.useState(0)
@@ -73,9 +73,10 @@ export default function SimplePaper({ items }) {
       }}
     >
       {items.map(({ node }, i) => {
+        console.log("from items map", node.contentful_id)
         if (i < 5) {
           return (
-            <Link to={`/${node.contentful_id}`}>
+            <Link to={node.contentful_id} key={i + 200}>
               <StyledCardSmall
                 key={i}
                 img={node.photos[0].fluid.src}
@@ -86,7 +87,7 @@ export default function SimplePaper({ items }) {
           )
         } else {
           return (
-            <Link to={`/${node.contentful_id}`}>
+            <Link to={node.contentful_id} key={i + 200}>
               <StyledCardSmall
                 key={i}
                 img={node.photos[0].fluid.src}

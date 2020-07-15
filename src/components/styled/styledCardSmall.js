@@ -1,6 +1,6 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
-
+import Moment from "moment"
 import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
 import CardMedia from "@material-ui/core/CardMedia"
@@ -51,7 +51,7 @@ export default function PreviewCard({ img, content }) {
                 {content.location}
               </Typography>
               <Typography variant="body2" color="textSecondary">
-                added {content.createdAt}
+                added {Moment(content.createdAt).fromNow()}
               </Typography>
             </CardContent>
           </div>

@@ -74,7 +74,7 @@ export default function Item({
               {iterableList.map((el, i) => {
                 if (i < iterableList.length - 1) {
                   return (
-                    <Box p={1}>
+                    <Box p={1} key={i + 20}>
                       <Typography variant="body2" gutterBottom align="center">
                         {el}
                       </Typography>
@@ -83,7 +83,7 @@ export default function Item({
                   )
                 } else {
                   return (
-                    <Box p={1}>
+                    <Box p={1} key={i + 20}>
                       <Typography variant="body2" gutterBottom align="center">
                         {el}
                       </Typography>
