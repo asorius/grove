@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent"
 import CardMedia from "@material-ui/core/CardMedia"
 import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
+import Img from "gatsby-image"
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
@@ -34,6 +35,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: "flex-end",
     justifyContent: "center",
     width: "60%",
+    height: "100%",
   },
 }))
 
@@ -57,9 +59,11 @@ export default function PreviewCard({ img, content }) {
           </div>
           <CardMedia
             className={classes.cover}
-            image={img}
-            title="Live from space album cover"
-          ></CardMedia>
+            // image={img}
+            title="Click for full details"
+          >
+            <Img fluid={img} style={{ height: "100%", width: "100%" }}></Img>
+          </CardMedia>
         </Card>
       </Button>
     </div>

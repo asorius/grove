@@ -31,7 +31,7 @@ const Header = ({ siteTitle, subTitle, description }) => {
               photos {
                 title
                 fluid {
-                  src
+                  ...GatsbyContentfulFluid
                 }
               }
               createdAt(formatString: "")

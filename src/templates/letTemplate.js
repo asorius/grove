@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { Modal, Paper, Container, Box } from "@material-ui/core"
 import Layout from "../components/layout"
+import Img from "gatsby-image"
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
@@ -29,7 +30,6 @@ export default function Template({
     size,
     type,
   } = contentfulProperty
-  console.log(contentfulProperty)
   return (
     <Layout>
       <Container style={{ padding: "2rem" }}>
@@ -52,7 +52,6 @@ export default function Template({
             {photos.map((el, i) => (
               <div
                 style={{
-                  background: `url(${el.fluid.src})`,
                   height: "95%",
                   minWidth: "30rem",
                   backgroundSize: "cover",
@@ -62,10 +61,12 @@ export default function Template({
                 }}
                 onClick={() => {
                   handleOpen()
-                  chooseImg(el.fluid.src)
+                  chooseImg(el.fluid)
                 }}
                 key={i + 40}
-              ></div>
+              >
+                <Img fluid={el.fluid}></Img>
+              </div>
             ))}
           </Box>
         </Paper>
@@ -78,15 +79,15 @@ export default function Template({
       >
         <div
           style={{
-            background: `url(${img})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            height: "75vh",
             width: "75vw",
+            margin: "0 auto ",
+            paddingTop: "rem",
+            border: "none",
           }}
           onClick={handleClose}
-        ></div>
+        >
+          <Img fluid={img}></Img>
+        </div>
       </Modal>
     </Layout>
   )
@@ -104,7 +105,7 @@ export const pageQuery = graphql`
         description
         title
         fluid {
-          src
+          ...GatsbyContentfulFluid
         }
       }
       price

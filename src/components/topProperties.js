@@ -28,6 +28,7 @@ const useStyles = makeStyles({
   },
 })
 export default function TopProperties({ items }) {
+  console.log(items)
   const classes = useStyles()
   const [mouseScrollActive, setMouseScrollActive] = React.useState(false)
   const [startingMousePosition, setStartingMousePosition] = React.useState(0)
@@ -48,7 +49,6 @@ export default function TopProperties({ items }) {
       }}
       onMouseMove={e => {
         if (mouseScrollActive) {
-          console.log("active")
           const currentMousePosition = e.pageY
           const movedDistance = startingMousePosition - currentMousePosition
           setMoved(movedDistance)
@@ -73,13 +73,12 @@ export default function TopProperties({ items }) {
       }}
     >
       {items.map(({ node }, i) => {
-        console.log("from items map", node.contentful_id)
         if (i < 5) {
           return (
             <Link to={node.contentful_id} key={i + 200}>
               <StyledCardSmall
                 key={i}
-                img={node.photos[0].fluid.src}
+                img={node.photos[0].fluid}
                 content={node}
               />
               <Divider></Divider>
@@ -90,7 +89,7 @@ export default function TopProperties({ items }) {
             <Link to={node.contentful_id} key={i + 200}>
               <StyledCardSmall
                 key={i}
-                img={node.photos[0].fluid.src}
+                img={node.photos[0].fluid}
                 content={node}
               />
             </Link>

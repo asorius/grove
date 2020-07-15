@@ -44,6 +44,9 @@ module.exports = {
         accessToken: `P5cO09emKZdxpDPJPh0YYxpTZpae67Kk-9la3wC2tVc`,
       },
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
