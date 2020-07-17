@@ -28,7 +28,6 @@ const useStyles = makeStyles({
   },
 })
 export default function TopProperties({ items }) {
-  console.log(items)
   const classes = useStyles()
   const [mouseScrollActive, setMouseScrollActive] = React.useState(false)
   const [startingMousePosition, setStartingMousePosition] = React.useState(0)

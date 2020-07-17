@@ -35,7 +35,6 @@ const useStyles = makeStyles(theme => ({
     alignItems: "flex-end",
     justifyContent: "center",
     width: "60%",
-    height: "100%",
   },
 }))
 
