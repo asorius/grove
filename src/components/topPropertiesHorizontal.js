@@ -86,7 +86,7 @@ export default function TopHorizontal({ items }) {
               <Link to={`/${node.contentful_id}`} key={i + 200}>
                 <StyledCardSmall
                   key={i}
-                  img={node.photos[0].fluid}
+                  img={node.images[0].fluid}
                   content={node}
                 />
                 <Divider orientation="vertical" flexItem></Divider>
@@ -97,7 +97,7 @@ export default function TopHorizontal({ items }) {
               <Link to={`/${node.contentful_id}`} key={i + 200}>
                 <StyledCardSmall
                   key={i}
-                  img={node.photos[0].fluid}
+                  img={node.images[0].fluid}
                   content={node}
                 />
               </Link>

@@ -35,9 +35,7 @@ export default function Services() {
             tenants and always listen to your particular needs and wishes.
             We can negotiate the best deals on your behalf, working within
             an agreed budget and give you all the facts you need to make a
-            confident, informed decision. We work closely with a large network of
-            experienced agents, to ensure we achieve the right property
-            for you."
+            confident, informed decision. "
             openingText="We'll arrange the following at your convenience :"
             iterableList={tenantServiceList}
           ></ServiceItem>

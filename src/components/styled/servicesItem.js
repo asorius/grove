@@ -22,7 +22,7 @@ export default function Item({
 }) {
   return (
     <Box height="100%">
-      <Card style={{ height: "100%" }} elevation={5}>
+      <Card style={{ height: "100%", padding: "1rem 2rem " }} elevation={5}>
         <CardContent
           style={{
             height: "100%",

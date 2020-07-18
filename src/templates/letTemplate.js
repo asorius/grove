@@ -1,6 +1,13 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Modal, Paper, Container, Box } from "@material-ui/core"
+import {
+  Modal,
+  Paper,
+  Container,
+  Box,
+  Typography,
+  Chip,
+} from "@material-ui/core"
 import Layout from "../components/layout"
 import Img from "gatsby-image"
 export default function Template({
@@ -8,6 +15,13 @@ export default function Template({
 }) {
   const [open, setOpen] = React.useState(false)
   const [img, setImg] = React.useState("")
+  const [mouseScrollActive, setMouseScrollActive] = React.useState(false)
+  const [startingMousePosition, setStartingMousePosition] = React.useState(0)
+  const [
+    scrollValueAtTheStartOfDrag,
+    setscrollValueAtTheStartOfDrag,
+  ] = React.useState(0)
+  const [moved, setMoved] = React.useState(0)
   const handleOpen = () => {
     setOpen(true)
   }
@@ -20,15 +34,18 @@ export default function Template({
   }
   const { contentfulProperty } = data // data.markdownRemark holds your post data
   const {
-    createdAt,
-    furnished,
-    houseshare,
-    location,
-    name,
-    photos,
     price,
-    size,
+    location,
+    beds,
+    images,
+    comments,
+    furnished,
+    parking,
+    shared,
+    available,
+    createdAt,
     type,
+    keyProperties,
   } = contentfulProperty
   return (
     <Layout>
@@ -40,19 +57,39 @@ export default function Template({
             style={{
               height: "27rem",
               maxWidth: "80vw",
-              overflow: "scroll",
+              overflowX: "scroll",
               display: "flex",
             }}
+            onMouseDown={e => {
+              e.preventDefault()
+              setMouseScrollActive(true)
+              setStartingMousePosition(e.pageX)
+              setscrollValueAtTheStartOfDrag(e.currentTarget.scrollLeft)
+            }}
+            onMouseMove={e => {
+              if (mouseScrollActive) {
+                const currentMousePosition = e.pageX
+                const movedDistance =
+                  startingMousePosition - currentMousePosition
+                setMoved(movedDistance)
+                e.currentTarget.scrollLeft =
+                  scrollValueAtTheStartOfDrag + movedDistance
+              }
+            }}
+            onMouseUp={e => {
+              setMouseScrollActive(false)
+              const currentMousePosition = e.pageX
+              if (startingMousePosition === currentMousePosition) {
+                setMoved(0)
+              }
+            }}
+            onMouseLeave={e => {
+              setMouseScrollActive(false)
+            }}
           >
-            {location}
-            {name}
-            {price}
-            {type}
-            {createdAt}
-            {photos.map((el, i) => (
+            {images.map((el, i) => (
               <div
                 style={{
-                  height: "95%",
                   minWidth: "30rem",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
@@ -60,13 +97,48 @@ export default function Template({
                   margin: ".5rem",
                 }}
                 onClick={() => {
-                  handleOpen()
-                  chooseImg(el.fluid)
+                  if (moved === 0) {
+                    handleOpen()
+                    chooseImg(el.fluid)
+                  }
                 }}
                 key={i + 40}
               >
-                <Img fluid={el.fluid}></Img>
+                <Img fluid={el.fluid} style={{ height: "100%" }}></Img>
               </div>
+            ))}
+          </Box>
+          <Box m={2}>
+            <Typography variant="h4" gutterBottom align="center">
+              A perfectly nice {type} at a price of {price}. Located in{" "}
+              {location}.
+            </Typography>
+            <Typography variant="body1" align="center">
+              {comments.comments}
+            </Typography>
+            <Typography variant="body2" align="center">
+              Added on {createdAt}
+            </Typography>
+          </Box>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            fullWidth
+            align="center"
+          >
+            Key features:
+          </Typography>
+          <Box
+            style={{
+              display: "flex",
+              minWidth: "25rem",
+              margin: "0 auto",
+              justifyContent: "space-between",
+            }}
+            p={2}
+          >
+            {keyProperties.map(el => (
+              <Chip color="primary" label={el} style={{ minWidth: "5rem" }} />
             ))}
           </Box>
         </Paper>
@@ -81,12 +153,12 @@ export default function Template({
           style={{
             width: "75vw",
             margin: "0 auto ",
-            paddingTop: "rem",
+            marginTop: "5rem",
             border: "none",
           }}
           onClick={handleClose}
         >
-          <Img fluid={img}></Img>
+          <Img fluid={img} style={{ height: "100%" }}></Img>
         </div>
       </Modal>
     </Layout>
@@ -95,22 +167,24 @@ export default function Template({
 export const pageQuery = graphql`
   query($slug: String!) {
     contentfulProperty(contentful_id: { eq: $slug }) {
-      addDate
       contentful_id
-      furnished
-      houseshare
+      price
       location
-      name
-      photos {
-        description
-        title
+      beds
+      images {
         fluid {
           ...GatsbyContentfulFluid
         }
       }
-      price
-      size
+      comments {
+        comments
+      }
+      furnished
+      parking
+      shared
+      available
       type
+      keyProperties
       createdAt(formatString: "DD MMMM YYYY")
     }
   }

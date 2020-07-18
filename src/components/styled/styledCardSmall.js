@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     margin: ".5rem",
-    minHeight: "12rem",
+    minHeight: "10rem",
     width: "100%",
   },
   details: {
@@ -56,11 +56,7 @@ export default function PreviewCard({ img, content }) {
               </Typography>
             </CardContent>
           </div>
-          <CardMedia
-            className={classes.cover}
-            // image={img}
-            title="Click for full details"
-          >
+          <CardMedia className={classes.cover} title="Click for full details">
             <Img fluid={img} style={{ height: "100%", width: "100%" }}></Img>
           </CardMedia>
         </Card>

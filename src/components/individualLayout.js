@@ -24,6 +24,7 @@ export default function LayoutIndividual({
           backgroundSize: "contain",
           backgroundPosition: `${bg ? "right" : "left"}`,
           backgroundRepeat: "no-repeat",
+          minHeight: "95vh",
         }}
       >
         <Box p={4}>

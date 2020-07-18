@@ -8,22 +8,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       allContentfulProperty {
         edges {
           node {
-            createdAt
-            furnished
-            houseshare
-            location
-            name
             contentful_id
-            photos {
-              title
-              description
-              fluid {
-                src
-              }
-            }
-            price
-            size
-            type
           }
         }
       }

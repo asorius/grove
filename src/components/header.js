@@ -24,16 +24,23 @@ const Header = ({ siteTitle, subTitle, description }) => {
         allContentfulProperty {
           edges {
             node {
-              price
               contentful_id
-              name
+              price
               location
-              photos {
-                title
+              beds
+              images {
                 fluid {
                   ...GatsbyContentfulFluid
                 }
               }
+              comments {
+                comments
+              }
+              furnished
+              parking
+              shared
+              available
+              type
               createdAt(formatString: "")
             }
           }
@@ -149,20 +156,25 @@ const Header = ({ siteTitle, subTitle, description }) => {
                 }}
               >
                 <Box style={{ position: "relative" }}>
-                  <Typography variant="h4" align="center" gutterBottom>
+                  <Typography
+                    variant="h4"
+                    align="center"
+                    gutterBottom
+                    style={{ margin: "2rem" }}
+                  >
                     Newest properties
+                    <div
+                      style={{
+                        position: "absolute",
+                        height: 4,
+                        width: "50%",
+                        margin: "1rem auto",
+                        background: "#6a41f2",
+                        borderRadius: 5,
+                        left: "25%",
+                      }}
+                    ></div>
                   </Typography>
-                  <div
-                    style={{
-                      position: "absolute",
-                      height: 4,
-                      width: "50%",
-                      margin: "0 auto",
-                      background: "#6a41f2",
-                      borderRadius: 5,
-                      left: "25%",
-                    }}
-                  ></div>
                 </Box>
                 <Box p={2} style={{ maxWdith: "80%" }}>
                   <Box style={{ width: "100%" }}>
