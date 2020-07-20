@@ -48,7 +48,7 @@ export default function Template({
     keyProperties,
   } = contentfulProperty
   return (
-    <Layout>
+    <Layout page={"let"}>
       <Container style={{ padding: "2rem" }}>
         <Paper
           style={{ display: "grid", alignContent: "center", padding: "2rem" }}
@@ -108,38 +108,60 @@ export default function Template({
               </div>
             ))}
           </Box>
-          <Box m={2}>
-            <Typography variant="h4" gutterBottom align="center">
-              A perfectly nice {type} at a price of {price}. Located in{" "}
-              {location}.
-            </Typography>
-            <Typography variant="body1" align="center">
-              {comments.comments}
-            </Typography>
-            <Typography variant="body2" align="center">
-              Added on {createdAt}
-            </Typography>
-          </Box>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            fullWidth
-            align="center"
-          >
-            Key features:
-          </Typography>
-          <Box
-            style={{
-              display: "flex",
-              minWidth: "25rem",
-              margin: "0 auto",
-              justifyContent: "space-between",
-            }}
-            p={2}
-          >
-            {keyProperties.map(el => (
-              <Chip color="primary" label={el} style={{ minWidth: "5rem" }} />
-            ))}
+          <Box display="flex" justifyContent="space-around" minHeight="15rem">
+            <Box
+              m={2}
+              width="50%"
+              display="flex"
+              justifyContent="space-around"
+              flexDirection="column"
+            >
+              <Typography variant="h4" gutterBottom align="center">
+                {type} at a price of {price} pcm. Located in {location}.
+              </Typography>
+              <Typography variant="body1" align="center">
+                {comments.comments}
+              </Typography>
+            </Box>
+            <Box
+              m={2}
+              width="50%"
+              display="flex"
+              justifyContent="space-around"
+              flexDirection="column"
+            >
+              <Typography variant="body2" align="center">
+                Added: {createdAt}
+              </Typography>
+              <Typography variant="body2" align="center">
+                Available from: {available}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                fullWidth
+                align="center"
+              >
+                Key features:
+              </Typography>
+              <Box
+                style={{
+                  display: "flex",
+                  minWidth: "25rem",
+                  margin: "0 auto",
+                  justifyContent: "space-between",
+                }}
+                p={2}
+              >
+                {keyProperties.map(el => (
+                  <Chip
+                    color="primary"
+                    label={el}
+                    style={{ minWidth: "5rem" }}
+                  />
+                ))}
+              </Box>
+            </Box>
           </Box>
         </Paper>
       </Container>
@@ -182,7 +204,7 @@ export const pageQuery = graphql`
       furnished
       parking
       shared
-      available
+      available(formatString: "DD MMMM YYYY")
       type
       keyProperties
       createdAt(formatString: "DD MMMM YYYY")

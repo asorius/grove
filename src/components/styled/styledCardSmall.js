@@ -52,6 +52,9 @@ export default function PreviewCard({ img, content }) {
                 {content.location}
               </Typography>
               <Typography variant="body2" color="textSecondary">
+                {content.shared ? "sharehouse" : ""}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
                 added {Moment(content.createdAt).fromNow()}
               </Typography>
             </CardContent>

@@ -31,7 +31,7 @@ const useStyles = makeStyles({
     },
   },
 })
-const Navbar = ({ siteTitle }) => {
+const Navbar = ({ siteTitle, parent }) => {
   const classes = useStyles()
   const trigger = useScrollTrigger()
   return (
@@ -71,10 +71,10 @@ const Navbar = ({ siteTitle }) => {
               </Link>
 
               <Hidden smDown>
-                <HorizontalNavigation></HorizontalNavigation>
+                <HorizontalNavigation parent={parent}></HorizontalNavigation>
               </Hidden>
               <Hidden mdUp>
-                <VerticalNavigation></VerticalNavigation>
+                <VerticalNavigation parent={parent}></VerticalNavigation>
               </Hidden>
             </Toolbar>
           </Container>

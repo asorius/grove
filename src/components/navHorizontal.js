@@ -2,6 +2,7 @@ import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import { Button, Typography } from "@material-ui/core"
 import { navbarList } from "../fakedata"
+import { Link } from "gatsby"
 const useStyles = makeStyles({
   root: {
     color: "white",
@@ -13,7 +14,7 @@ const useStyles = makeStyles({
   },
 })
 
-export default function HorizontalNavigation() {
+export default function HorizontalNavigation({ parent }) {
   const classes = useStyles()
   return (
     <div
@@ -25,13 +26,21 @@ export default function HorizontalNavigation() {
         color: "white",
       }}
     >
-      {navbarList.map((item, i) => (
-        <a href={`#${item}`} key={i + 301}>
-          <Button size="small" className={classes.root}>
-            <Typography variant="body1">{item}</Typography>
-          </Button>
-        </a>
-      ))}
+      {navbarList.map((item, i) =>
+        parent ? (
+          <Link to={`/#${item}`}>
+            <Button size="small" className={classes.root}>
+              <Typography variant="body1">{item}</Typography>
+            </Button>
+          </Link>
+        ) : (
+          <a href={`#${item}`} key={i + 301}>
+            <Button size="small" className={classes.root}>
+              <Typography variant="body1">{item}</Typography>
+            </Button>
+          </a>
+        )
+      )}
     </div>
   )
 }
