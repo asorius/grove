@@ -10,6 +10,8 @@ import {
 } from "@material-ui/core"
 import Layout from "../components/layout"
 import Img from "gatsby-image"
+import SEO from "../components/seo"
+
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
@@ -49,6 +51,12 @@ export default function Template({
   } = contentfulProperty
   return (
     <Layout page={"let"}>
+      <SEO
+        title={`${
+          type.toString().charAt(0).toUpperCase() + type.toString().slice(1)
+        } | ${location}`}
+      />
+
       <Container style={{ padding: "2rem" }}>
         <Paper
           style={{ display: "grid", alignContent: "center", padding: "2rem" }}

@@ -19,7 +19,11 @@ export default function LayoutIndividual({
     >
       <Paper
         style={{
-          background: `${bg ? `url('${bgimg}')` : `url('${bgimg2}')`}`,
+          background:
+            bg === "none"
+              ? ""
+              : `${bg ? `url('${bgimg}')` : `url('${bgimg2}')`}`,
+
           backgroundColor: "#fff",
           backgroundSize: "contain",
           backgroundPosition: `${bg ? "right" : "left"}`,

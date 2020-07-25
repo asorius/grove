@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent"
 import CardMedia from "@material-ui/core/CardMedia"
 import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
+import { Link } from "gatsby"
 import Img from "gatsby-image"
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,27 +37,55 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     width: "60%",
   },
+  smallstyles: {
+    width: "100%",
+    minWidth: "18rem",
+  },
+  bigstyles: { minHeight: "15rem", width: "100%" },
 }))
 
-export default function PreviewCard({ img, content }) {
+export default function PreviewCard({ img, content, lg }) {
   const classes = useStyles()
   return (
-    <div style={{ width: "100%", minWidth: "18rem" }}>
+    <div className={classes.smallstyles}>
       <Button style={{ textTransform: "none" }} fullWidth>
         <Card className={classes.root}>
           <div className={classes.details}>
             <CardContent className={classes.content}>
-              <Typography variant="body1">{content.price} pcm</Typography>
-              <Typography variant="body1">{content.name}</Typography>
-              <Typography variant="body1" gutterBottom>
+              <Typography
+                variant={lg ? "h3" : "h5"}
+                color={lg ? "secondary" : ""}
+              >
+                {content.price} pcm
+              </Typography>
+
+              <Typography
+                variant={lg ? "h4" : "body1"}
+                color="secondary"
+                gutterBottom
+              >
                 {content.location}
               </Typography>
-              <Typography variant="body2" color="textSecondary">
+              {lg ? (
+                <Typography variant="body1" gutterBottom align="center">
+                  {content.comments.comments}
+                </Typography>
+              ) : (
+                ""
+              )}
+              <Typography variant="body2" color="textSecondary" gutterBottom>
                 {content.shared ? "sharehouse" : ""}
               </Typography>
-              <Typography variant="body2" color="textSecondary">
+              <Typography variant="body2" color="textSecondary" gutterBottom>
                 added {Moment(content.createdAt).fromNow()}
               </Typography>
+              {lg ? (
+                <Button variant="contained" color="secondary">
+                  Details
+                </Button>
+              ) : (
+                ""
+              )}
             </CardContent>
           </div>
           <CardMedia className={classes.cover} title="Click for full details">

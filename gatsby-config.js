@@ -1,3 +1,6 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 module.exports = {
   siteMetadata: {
     title: `Grove Property Solutions`,
@@ -40,8 +43,9 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: `wf9xwcdimezi`,
-        accessToken: `P5cO09emKZdxpDPJPh0YYxpTZpae67Kk-9la3wC2tVc`,
+        spaceId: process.env.GATSBY_SPACEID,
+        accessToken: process.env.GATSBY_ACCESSTOKEN,
+        forceFullSync: true,
       },
     },
     `gatsby-transformer-sharp`,

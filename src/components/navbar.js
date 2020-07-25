@@ -66,7 +66,9 @@ const Navbar = ({ siteTitle, parent }) => {
                       marginBottom: 0,
                     }}
                   ></img>
-                  <Typography variant="h6">{siteTitle}</Typography>
+                  <Hidden smDown>
+                    <Typography variant="h6">{siteTitle}</Typography>
+                  </Hidden>
                 </Button>
               </Link>
 

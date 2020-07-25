@@ -6,6 +6,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "../components/header"
 import Services from "../components/services"
 import Contacts from "../components/contacts"
+import Lettings from "../components/lettings"
 const IndexPage = ({ title, subTitle, description }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery2 {
@@ -29,6 +30,7 @@ const IndexPage = ({ title, subTitle, description }) => {
         id="Home"
       ></Header>
       <Services></Services>
+      <Lettings></Lettings>
       <Contacts></Contacts>
     </Layout>
   )

@@ -12,8 +12,6 @@ const landlordServiceList = [
   "Receive rental payments and pay regular outgoings in accordance with your management agreement",
   "Inspect and report periodically the property condition and status",
   "Arrange any necessary repairs or maintenance, in accordance with the management agreement",
-  "Keep in touch with the tenant on a routine basis, arranging renewals of the agreement as necessary",
-  "Full management of your portfolio to optimise your property let, to provide you with the best return",
 ]
 const tenantServiceList = [
   "Viewings",

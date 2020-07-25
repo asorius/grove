@@ -58,10 +58,10 @@ const Header = ({ siteTitle, subTitle, description }) => {
         backgroundAttachment: "fixed",
         display: "grid",
         placeItems: "center",
-        height: "100%",
+        minHeight: "100vh",
       }}
     >
-      <Container style={{ height: "100%" }}>
+      <Container>
         <Grid
           container
           spacing={0}
@@ -140,7 +140,7 @@ const Header = ({ siteTitle, subTitle, description }) => {
               display: "flex",
               alignItems: "center",
               maxHeight: "60rem",
-              width: "80%",
+              margin: "2rem 0 2rem",
             }}
           >
             <Hidden smDown>
@@ -160,7 +160,7 @@ const Header = ({ siteTitle, subTitle, description }) => {
                     variant="h4"
                     align="center"
                     gutterBottom
-                    style={{ margin: "2rem" }}
+                    style={{ margin: "1rem 0 1rem" }}
                   >
                     Newest properties
                     <div
@@ -195,9 +195,11 @@ const Header = ({ siteTitle, subTitle, description }) => {
                   </Box>
                 </Box>
                 <div style={{ textAlign: "center" }}>
-                  <Button variant="contained" color="secondary" size="large">
-                    See all properties
-                  </Button>
+                  <a href="#Lettings">
+                    <Button variant="contained" color="secondary" size="large">
+                      See all properties
+                    </Button>
+                  </a>
                 </div>
               </Paper>
             </Hidden>
@@ -217,16 +219,5 @@ Header.defaultProps = {
   siteTitle: ``,
   description: ``,
 }
-// export const pageQuery = graphql`
-//   query {
-//     allContentfulProperty {
-//       edges {
-//         node {
-//           addDate
-//           price
-//         }
-//       }
-//     }
-//   }
-// `
+
 export default Header
