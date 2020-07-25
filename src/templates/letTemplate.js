@@ -161,6 +161,34 @@ export default function Template({
                 }}
                 p={2}
               >
+                <Chip
+                  color="primary"
+                  label={`${beds} bed(s)`}
+                  style={{ minWidth: "5rem" }}
+                />
+                {parking ? (
+                  <Chip
+                    color="primary"
+                    label="parking"
+                    style={{ minWidth: "5rem" }}
+                  />
+                ) : (
+                  ""
+                )}
+                {shared ? (
+                  <Chip
+                    color="primary"
+                    label="shared house"
+                    style={{ minWidth: "5rem" }}
+                  />
+                ) : (
+                  ""
+                )}
+                <Chip
+                  color="primary"
+                  label={furnished ? "furnished" : "unfurnished"}
+                  style={{ minWidth: "5rem" }}
+                />
                 {keyProperties.map(el => (
                   <Chip
                     color="primary"

@@ -1,4 +1,3 @@
-import React from "react"
 const navbarList = ["Home", "Services", "Lettings", "Contacts"]
 const landlordServiceList = [
   "Locating suitable tenants, through professional marketing to meet your needs",
