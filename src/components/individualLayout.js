@@ -3,6 +3,7 @@ import { Paper, Typography, Box, Container } from "@material-ui/core"
 import Underliner from "./styled/underliner"
 import bgimg from "../images/undraw_select_house_qbag.svg"
 import bgimg2 from "../images/phone.svg"
+import lettingsbg from "../images/lettings.svg"
 export default function LayoutIndividual({
   header,
   subheader,
@@ -20,14 +21,15 @@ export default function LayoutIndividual({
       <Paper
         style={{
           background:
-            bg === "none"
-              ? ""
-              : `${bg ? `url('${bgimg}')` : `url('${bgimg2}')`}`,
-
+            bg === 1
+              ? `url('${bgimg}')`
+              : bg === 2
+              ? `url('${lettingsbg}')`
+              : `url('${bgimg2}')`,
           backgroundColor: "#fff",
           backgroundSize: "contain",
-          backgroundPosition: `${bg ? "right" : "left"}`,
           backgroundRepeat: "no-repeat",
+          backgroundPosition: `${bg === 1 ? "right" : "left"}`,
           minHeight: "95vh",
         }}
       >
@@ -49,7 +51,7 @@ export default function LayoutIndividual({
             </Typography>
           </Box>
         </Box>
-        <Box p={2} m={2}>
+        <Box p={1} m={2}>
           {children}
         </Box>
       </Paper>

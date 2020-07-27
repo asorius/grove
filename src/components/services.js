@@ -13,7 +13,7 @@ export default function Services() {
     investors and tenants. All of these services are tailored to individual requirements,
     making sure your needs are always met."
       id="Services"
-      bg={true}
+      bg={1}
     >
       <Grid container alignItems="stretch" spacing={1}>
         <Grid item md={6}>

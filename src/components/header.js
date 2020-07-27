@@ -21,7 +21,7 @@ const Header = ({ siteTitle, subTitle, description }) => {
   } = useStaticQuery(
     graphql`
       query {
-        allContentfulProperty {
+        allContentfulProperty(limit: 5) {
           edges {
             node {
               contentful_id

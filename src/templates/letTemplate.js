@@ -7,6 +7,7 @@ import {
   Box,
   Typography,
   Chip,
+  Grid,
 } from "@material-ui/core"
 import Layout from "../components/layout"
 import Img from "gatsby-image"
@@ -116,89 +117,83 @@ export default function Template({
               </div>
             ))}
           </Box>
-          <Box display="flex" justifyContent="space-around" minHeight="15rem">
-            <Box
-              m={2}
-              width="50%"
-              display="flex"
-              justifyContent="space-around"
-              flexDirection="column"
-            >
+          <Grid container>
+            <Grid item xs={12} lg={8}>
               <Typography variant="h4" gutterBottom align="center">
                 {type} at a price of {price} pcm. Located in {location}.
               </Typography>
               <Typography variant="body1" align="center">
                 {comments.comments}
               </Typography>
-            </Box>
-            <Box
-              m={2}
-              width="50%"
-              display="flex"
-              justifyContent="space-around"
-              flexDirection="column"
-            >
-              <Typography variant="body2" align="center">
-                Added: {createdAt}
-              </Typography>
-              <Typography variant="body2" align="center">
-                Available from: {available}
-              </Typography>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-                fullWidth
-                align="center"
-              >
-                Key features:
-              </Typography>
+            </Grid>
+            <Grid item xs={12} lg={4}>
               <Box
                 style={{
-                  display: "flex",
-                  minWidth: "25rem",
-                  margin: "0 auto",
-                  justifyContent: "space-between",
+                  display: "grid",
+                  minHeight: "20rem",
+                  placeContent: "center",
                 }}
-                p={2}
               >
-                <Chip
-                  color="primary"
-                  label={`${beds} bed(s)`}
-                  style={{ minWidth: "5rem" }}
-                />
-                {parking ? (
-                  <Chip
-                    color="primary"
-                    label="parking"
-                    style={{ minWidth: "5rem" }}
-                  />
-                ) : (
-                  ""
-                )}
-                {shared ? (
-                  <Chip
-                    color="primary"
-                    label="shared house"
-                    style={{ minWidth: "5rem" }}
-                  />
-                ) : (
-                  ""
-                )}
-                <Chip
-                  color="primary"
-                  label={furnished ? "furnished" : "unfurnished"}
-                  style={{ minWidth: "5rem" }}
-                />
-                {keyProperties.map(el => (
-                  <Chip
-                    color="primary"
-                    label={el}
-                    style={{ minWidth: "5rem" }}
-                  />
-                ))}
+                <Typography variant="h5" align="center" gutterBottom>
+                  Additional information:
+                </Typography>
+                <Typography variant="body2" align="center">
+                  Added: {createdAt}
+                </Typography>
+                <Typography variant="body2" align="center">
+                  Available from: {available}
+                </Typography>
+
+                <Box p={2}>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    fullWidth
+                    align="center"
+                  >
+                    Key features:
+                  </Typography>
+                  <Box p={2} textAlign="center">
+                    <Chip
+                      color="primary"
+                      label={`${beds} bed(s)`}
+                      style={{ margin: ".2rem" }}
+                    />
+                    {parking ? (
+                      <Chip
+                        color="primary"
+                        label="parking"
+                        style={{ margin: ".2rem" }}
+                      />
+                    ) : (
+                      ""
+                    )}
+                    {shared ? (
+                      <Chip
+                        color="primary"
+                        label="shared house"
+                        style={{ margin: ".2rem" }}
+                      />
+                    ) : (
+                      ""
+                    )}
+                    <Chip
+                      color="primary"
+                      label={furnished ? "furnished" : "unfurnished"}
+                      style={{ margin: ".2rem" }}
+                    />
+                    {keyProperties.map(el => (
+                      <Chip
+                        color="primary"
+                        label={el}
+                        style={{ margin: ".2rem" }}
+                      />
+                    ))}
+                  </Box>
+                </Box>
               </Box>
-            </Box>
-          </Box>
+            </Grid>
+          </Grid>
         </Paper>
       </Container>
       <Modal

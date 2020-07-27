@@ -10,6 +10,7 @@ export default function Contacts() {
       id="Contacts"
       header="Contact Us"
       subheader="Whatever your property needs, Grove Property Solutions will open the door for you!"
+      bg={3}
     >
       <Grid
         container
