@@ -64,22 +64,47 @@ const Lettings = () => {
               style={{ width: "100%" }}
             >
               <Card
-                variant="outlined"
-                style={{ display: "flex", width: "100%", minHeight: "14rem" }}
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  minHeight: "14rem",
+                }}
               >
                 <CardMedia
-                  style={{ minWidth: "8rem", width: "100%", minHeight: "8rem" }}
+                  style={{
+                    minWidth: "8rem",
+                    width: "100%",
+                    minHeight: "8rem",
+                    position: "relative",
+                  }}
                 >
+                  <div
+                    style={{
+                      position: "absolute",
+                      left: "1rem",
+                      top: "1rem",
+                      backgroundColor: "MEDIUMSEAGREEN",
+                      borderRadius: ".3rem",
+                      padding: "0 .5rem",
+                      zIndex: "30",
+                      color: "white",
+                    }}
+                  >
+                    <Typography variant="h5" display="inline">
+                      {node.price}{" "}
+                    </Typography>
+                    <Typography variant="body2" display="inline">
+                      {" "}
+                      pcm
+                    </Typography>
+                  </div>
                   <Img
                     fluid={node.images[0].fluid}
                     style={{ height: "100%" }}
                   ></Img>
                 </CardMedia>
                 <CardContent style={{ width: "100%" }}>
-                  <Typography component="h5" variant="h5">
-                    {node.price} pcm.
-                  </Typography>
-                  <Typography variant="subtitle1" color="textPrimary">
+                  <Typography variant="h5" color="textPrimary">
                     {node.type}, {node.location}
                   </Typography>
                   <Typography

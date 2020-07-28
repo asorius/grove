@@ -51,18 +51,11 @@ export default function PreviewCard({ img, content, lg }) {
         <Card className={classes.root}>
           <div className={classes.details}>
             <CardContent className={classes.content}>
-              <Typography
-                variant={lg ? "h3" : "h5"}
-                color={lg ? "secondary" : ""}
-              >
-                {content.price} pcm
+              <Typography variant="h5" color={lg ? "secondary" : ""}>
+                {content.type}
               </Typography>
 
-              <Typography
-                variant={lg ? "h4" : "body1"}
-                color="secondary"
-                gutterBottom
-              >
+              <Typography variant="subtitle2" color="secondary" gutterBottom>
                 {content.location}
               </Typography>
               {lg ? (
@@ -72,7 +65,7 @@ export default function PreviewCard({ img, content, lg }) {
               ) : (
                 ""
               )}
-              <Typography variant="body2" color="textSecondary" gutterBottom>
+              <Typography variant="caption" color="textSecondary" gutterBottom>
                 {content.shared ? "sharehouse" : ""}
               </Typography>
               <Typography variant="body2" color="textSecondary" gutterBottom>
@@ -87,7 +80,31 @@ export default function PreviewCard({ img, content, lg }) {
               )}
             </CardContent>
           </div>
-          <CardMedia className={classes.cover} title="Click for full details">
+          <CardMedia
+            className={classes.cover}
+            title="Click for full details"
+            style={{ position: "relative" }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                left: ".5rem",
+                top: ".5rem",
+                backgroundColor: "MEDIUMSEAGREEN",
+                borderRadius: ".3rem",
+                padding: "0 .5rem",
+                zIndex: "30",
+                color: "white",
+              }}
+            >
+              <Typography variant="h5" display="inline">
+                {content.price}{" "}
+              </Typography>
+              <Typography variant="body2" display="inline">
+                {" "}
+                pcm
+              </Typography>
+            </div>
             <Img fluid={img} style={{ height: "100%", width: "100%" }}></Img>
           </CardMedia>
         </Card>
