@@ -44,7 +44,7 @@ const Layout = ({ children, page }) => {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <CssBaseline></CssBaseline>
+        {/* <CssBaseline></CssBaseline> */}
         <Navbar siteTitle={data.site.siteMetadata.title} parent={page} />
         <div id="back-to-top-anchor"></div>
         <main>{children}</main>

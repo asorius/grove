@@ -1,5 +1,6 @@
 import React from "react"
-import { Paper, Divider } from "@material-ui/core"
+import { Paper, Divider, Box, Typography } from "@material-ui/core"
+import Underliner from "./styled/underliner"
 import { makeStyles } from "@material-ui/core/styles"
 import StyledCardSmall from "./styled/styledCardSmall"
 import { Link } from "gatsby"
@@ -37,64 +38,77 @@ export default function TopProperties({ items }) {
   ] = React.useState(0)
   const [moved, setMoved] = React.useState(0)
   return (
-    <Paper
-      elevation={3}
-      className={classes.root}
-      onMouseDown={e => {
-        e.preventDefault()
-        setMouseScrollActive(true)
-        setStartingMousePosition(e.pageY)
-        setscrollValueAtTheStartOfDrag(e.currentTarget.scrollTop)
-      }}
-      onMouseMove={e => {
-        if (mouseScrollActive) {
-          const currentMousePosition = e.pageY
-          const movedDistance = startingMousePosition - currentMousePosition
-          setMoved(movedDistance)
-          e.currentTarget.scrollTop =
-            scrollValueAtTheStartOfDrag + movedDistance
-        }
-      }}
-      onMouseUp={e => {
-        setMouseScrollActive(false)
-        if (moved) {
+    <Box>
+      <Paper
+        elevation={3}
+        className={classes.root}
+        onMouseDown={e => {
           e.preventDefault()
-        }
-      }}
-      onMouseLeave={e => {
-        setMouseScrollActive(false)
-      }}
-      onClick={e => {
-        if (moved) {
-          console.log("click")
-          e.preventDefault()
-        }
-      }}
-    >
-      {items.map(({ node }, i) => {
-        if (i < 5) {
-          return (
-            <Link to={node.contentful_id} key={i + 200}>
-              <StyledCardSmall
-                key={i}
-                img={node.images[0].fluid}
-                content={node}
-              />
-              <Divider></Divider>
-            </Link>
-          )
-        } else {
-          return (
-            <Link to={node.contentful_id} key={i + 200}>
-              <StyledCardSmall
-                key={i}
-                img={node.images[0].fluid}
-                content={node}
-              />
-            </Link>
-          )
-        }
-      })}
-    </Paper>
+          setMouseScrollActive(true)
+          setStartingMousePosition(e.pageY)
+          setscrollValueAtTheStartOfDrag(e.currentTarget.scrollTop)
+        }}
+        onMouseMove={e => {
+          if (mouseScrollActive) {
+            const currentMousePosition = e.pageY
+            const movedDistance = startingMousePosition - currentMousePosition
+            setMoved(movedDistance)
+            e.currentTarget.scrollTop =
+              scrollValueAtTheStartOfDrag + movedDistance
+          }
+        }}
+        onMouseUp={e => {
+          setMouseScrollActive(false)
+          if (moved) {
+            e.preventDefault()
+          }
+        }}
+        onMouseLeave={e => {
+          setMouseScrollActive(false)
+        }}
+        onClick={e => {
+          if (moved) {
+            console.log("click")
+            e.preventDefault()
+          }
+        }}
+      >
+        <Box style={{ position: "relative" }}>
+          <Typography
+            variant="h4"
+            align="center"
+            color="primary.contrastText"
+            gutterBottom
+          >
+            Newest properties
+            <Underliner></Underliner>
+          </Typography>
+        </Box>
+        {items.map(({ node }, i) => {
+          if (i < 5) {
+            return (
+              <Link to={node.contentful_id} key={i + 200}>
+                <StyledCardSmall
+                  key={i}
+                  img={node.images[0].fluid}
+                  content={node}
+                />
+                <Divider></Divider>
+              </Link>
+            )
+          } else {
+            return (
+              <Link to={node.contentful_id} key={i + 200}>
+                <StyledCardSmall
+                  key={i}
+                  img={node.images[0].fluid}
+                  content={node}
+                />
+              </Link>
+            )
+          }
+        })}
+      </Paper>
+    </Box>
   )
 }

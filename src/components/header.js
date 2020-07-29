@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
-import HeroBg from "../images/hero-image-edited.jpg"
-
+import HeroBg from "../images/figma.jpg"
+import Underliner from "./styled/underliner"
 import { graphql, useStaticQuery } from "gatsby"
 
 import {
@@ -83,7 +83,8 @@ const Header = ({ siteTitle, subTitle, description }) => {
               <Hidden mdDown>
                 <Typography
                   variant="h1"
-                  fontWeight="bold"
+                  fontWeight="fontWeightBold"
+                  fontFamily="Miama"
                   color="primary"
                   align="center"
                   gutterBottom
@@ -97,17 +98,23 @@ const Header = ({ siteTitle, subTitle, description }) => {
                   fontWeight="bold"
                   color="primary"
                   align="center"
+                  fontWeight="fontWeightBold"
                   gutterBottom
                 >
                   {siteTitle}
                 </Typography>
               </Hidden>
             </Box>
-            <Box>
+            <Box textAlign="center">
               <Typography
                 variant="h5"
                 align="center"
-                style={{ color: "white", paddingBottom: "2rem" }}
+                style={{
+                  color: "white",
+                  margin: "2rem auto",
+                  background: "black",
+                }}
+                display="inline"
                 gutterBottom
               >
                 {subTitle}
@@ -121,10 +128,22 @@ const Header = ({ siteTitle, subTitle, description }) => {
               <Typography
                 variant="body1"
                 align="center"
-                style={{ color: "white", marginBottom: "3rem" }}
+                style={{
+                  color: "white",
+                  marginBottom: "3rem",
+                  background: "black",
+                }}
+                display="inline"
               >
                 {description}
               </Typography>
+              <div style={{ textAlign: "center", padding: "1rem" }}>
+                <a href="#Lettings">
+                  <Button variant="contained" color="secondary" size="large">
+                    See all properties
+                  </Button>
+                </a>
+              </div>
               <a href="#Contacts">
                 <Button variant="contained" color="primary" size="large">
                   Contact us!
@@ -144,40 +163,15 @@ const Header = ({ siteTitle, subTitle, description }) => {
             }}
           >
             <Hidden smDown>
-              <Paper
-                elevation={2}
-                variant="outlined"
+              <Box
                 style={{
-                  padding: "1rem",
                   width: "100%",
-                  background: "linear-gradient(to right, #ece9e6, #fff",
                   display: "grid",
                   alignContent: "center",
                 }}
               >
-                <Box style={{ position: "relative" }}>
-                  <Typography
-                    variant="h4"
-                    align="center"
-                    gutterBottom
-                    style={{ margin: "1rem 0 1rem" }}
-                  >
-                    Newest properties
-                    <div
-                      style={{
-                        position: "absolute",
-                        height: 4,
-                        width: "50%",
-                        margin: "1rem auto",
-                        background: "#6a41f2",
-                        borderRadius: 5,
-                        left: "25%",
-                      }}
-                    ></div>
-                  </Typography>
-                </Box>
-                <Box p={2} style={{ maxWdith: "80%" }}>
-                  <Box style={{ width: "100%" }}>
+                <Box style={{ maxWdith: "80%" }}>
+                  <Box>
                     <Hidden smDown>
                       <Hidden mdDown>
                         <Grid item>
@@ -194,14 +188,7 @@ const Header = ({ siteTitle, subTitle, description }) => {
                     </Hidden>
                   </Box>
                 </Box>
-                <div style={{ textAlign: "center" }}>
-                  <a href="#Lettings">
-                    <Button variant="contained" color="secondary" size="large">
-                      See all properties
-                    </Button>
-                  </a>
-                </div>
-              </Paper>
+              </Box>
             </Hidden>
           </Grid>
         </Grid>

@@ -1,23 +1,23 @@
 import React from "react"
-import { Paper, Divider } from "@material-ui/core"
+import { Paper, Divider, Box, Typography } from "@material-ui/core"
+import Underliner from "./styled/underliner"
 import { makeStyles } from "@material-ui/core/styles"
 import StyledCardSmall from "./styled/styledCardSmall"
 import { Link } from "gatsby"
 const useStyles = makeStyles({
   root: {
-    maxHeight: "15rem",
+    // maxHeight: "15rem",
     maxWidth: "50rem",
     overflowY: "hidden ",
     overflowX: " scroll",
     display: "flex",
     flexDirection: "row",
     flexWrap: "nowrap",
-    fontStyle: "italic",
     margin: "0 auto",
-    background: "rgba(255,255,255,0)",
     boxShadow: "none",
     "&::-webkit-scrollbar": {
       width: 10,
+      height: 10,
     },
     "&::-webkit-scrollbar-track": {
       boxShadow: "inset 0 0 6px rgba(0, 0, 0, 0.3)",
@@ -30,8 +30,6 @@ const useStyles = makeStyles({
     },
   },
   outer: {
-    background: "rgba(255,255,255,.5)",
-    margin: "2rem",
     padding: "1rem",
   },
 })
@@ -46,6 +44,12 @@ export default function TopHorizontal({ items }) {
   const [moved, setMoved] = React.useState(0)
   return (
     <Paper elevation={3} className={classes.outer}>
+      <Box style={{ position: "relative" }}>
+        <Typography variant="h5" align="center" gutterBottom>
+          Newest properties
+          <Underliner></Underliner>
+        </Typography>
+      </Box>
       <Paper
         className={classes.root}
         onMouseDown={e => {

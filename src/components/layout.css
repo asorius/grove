@@ -7,7 +7,8 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  background: #eff7f6;
+  /* background: #eff7f6; */
+  background: transparent;
 }
 a {
   text-decoration: none;
