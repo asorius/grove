@@ -24,9 +24,9 @@ const useStyles = makeStyles(theme => ({
     // background: "#e2e2e2",
   },
   content: {
-    // flex: "1 0 auto",
-    // display: "grid",
-    // alignContent: "center",
+    flex: "1 0 auto",
+    display: "grid",
+    alignContent: "center",
   },
   cover: {
     // display: "flex",

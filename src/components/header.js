@@ -61,25 +61,16 @@ const Header = ({ siteTitle, subTitle, description }) => {
         minHeight: "100vh",
       }}
     >
-      <Container>
-        <Grid
-          container
-          spacing={0}
-          alignItems="stretch"
-          style={{ height: "100%" }}
-        >
+      <Container style={{ height: "100%", paddingTop: "7rem" }}>
+        <Grid container spacing={0} style={{ height: "100%" }}>
           <Grid
             item
             md={12}
             lg={7}
-            style={{
-              display: "flex",
-              alignItems: "space-between",
-              flexDirection: "column",
-              paddingTop: "4rem",
-            }}
+            direction="column"
+            alignContent="space-between"
           >
-            <Box>
+            <Box textAlign="center">
               <Hidden mdDown>
                 <Typography
                   variant="h1"
@@ -105,71 +96,47 @@ const Header = ({ siteTitle, subTitle, description }) => {
                 </Typography>
               </Hidden>
             </Box>
-            <Box textAlign="center">
-              <Typography
-                variant="h5"
-                align="center"
-                style={{
-                  color: "white",
-                  margin: "2rem auto",
-                  background: "black",
-                }}
-                display="inline"
-                gutterBottom
-              >
+            <Box
+              textAlign="center"
+              color="white"
+              height="50%"
+              display="flex"
+              flexDirection="column"
+              justifyContent="space-around"
+            >
+              <Typography variant="h4" gutterBottom>
                 {subTitle}
               </Typography>
+              <Container>
+                <Typography variant="h5">{description}</Typography>
+              </Container>
             </Box>
-            <Container
-              style={{
-                textAlign: "center",
-              }}
+            <Box
+              textAlign="center"
+              display="flex"
+              height="15%"
+              flexDirection="column"
+              justifyContent="space-around"
             >
-              <Typography
-                variant="body1"
-                align="center"
-                style={{
-                  color: "white",
-                  marginBottom: "3rem",
-                  background: "black",
-                }}
-                display="inline"
-              >
-                {description}
-              </Typography>
-              <div style={{ textAlign: "center", padding: "1rem" }}>
+              <Box p={1}>
                 <a href="#Lettings">
                   <Button variant="contained" color="secondary" size="large">
                     See all properties
                   </Button>
                 </a>
+              </Box>
+              <div>
+                <a href="#Contacts">
+                  <Button variant="contained" color="primary" size="large">
+                    Contact us!
+                  </Button>
+                </a>
               </div>
-              <a href="#Contacts">
-                <Button variant="contained" color="primary" size="large">
-                  Contact us!
-                </Button>
-              </a>
-            </Container>
+            </Box>
           </Grid>
-          <Grid
-            item
-            md={12}
-            lg={5}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              maxHeight: "60rem",
-              margin: "2rem 0 2rem",
-            }}
-          >
+          <Grid item md={12} lg={5}>
             <Hidden smDown>
-              <Box
-                style={{
-                  width: "100%",
-                  display: "grid",
-                  alignContent: "center",
-                }}
-              >
+              <Box>
                 <Box style={{ maxWdith: "80%" }}>
                   <Box>
                     <Hidden smDown>
