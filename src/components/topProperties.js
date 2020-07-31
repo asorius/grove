@@ -1,6 +1,5 @@
 import React from "react"
-import { Paper, Divider, Box, Typography } from "@material-ui/core"
-import Underliner from "./styled/underliner"
+import { Paper, Divider, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import StyledCardSmall from "./styled/styledCardSmall"
 import { Link } from "gatsby"
@@ -68,22 +67,10 @@ export default function TopProperties({ items }) {
         }}
         onClick={e => {
           if (moved) {
-            console.log("click")
             e.preventDefault()
           }
         }}
       >
-        <Box style={{ position: "relative" }}>
-          <Typography
-            variant="h4"
-            align="center"
-            color="primary.contrastText"
-            gutterBottom
-          >
-            Newest properties
-            <Underliner></Underliner>
-          </Typography>
-        </Box>
         {items.map(({ node }, i) => {
           if (i < 5) {
             return (

@@ -57,12 +57,8 @@ const Lettings = () => {
         }}
       >
         {items.map(({ node }, i) => (
-          <ListItem button>
-            <Link
-              to={node.contentful_id}
-              key={i + 200}
-              style={{ width: "100%" }}
-            >
+          <ListItem button key={i + 6900}>
+            <Link to={node.contentful_id} style={{ width: "100%" }}>
               <Card
                 style={{
                   display: "flex",
@@ -118,6 +114,7 @@ const Lettings = () => {
                     {node.keyProperties.map((el, i) =>
                       i < 3 ? (
                         <Chip
+                          key={i + 500}
                           label={el}
                           size="small"
                           icon={<DoneIcon />}

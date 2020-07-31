@@ -11,7 +11,6 @@ import {
   Container,
   Hidden,
   Box,
-  Paper,
 } from "@material-ui/core"
 import TopProperties from "./topProperties"
 import TopPropertiesHorizontal from "./topPropertiesHorizontal"
@@ -63,13 +62,7 @@ const Header = ({ siteTitle, subTitle, description }) => {
     >
       <Container style={{ height: "100%", paddingTop: "7rem" }}>
         <Grid container spacing={0} style={{ height: "100%" }}>
-          <Grid
-            item
-            md={12}
-            lg={7}
-            direction="column"
-            alignContent="space-between"
-          >
+          <Grid item md={12} lg={8}>
             <Box textAlign="center">
               <Hidden mdDown>
                 <Typography
@@ -86,7 +79,6 @@ const Header = ({ siteTitle, subTitle, description }) => {
               <Hidden lgUp>
                 <Typography
                   variant="h2"
-                  fontWeight="bold"
                   color="primary"
                   align="center"
                   fontWeight="fontWeightBold"
@@ -111,6 +103,26 @@ const Header = ({ siteTitle, subTitle, description }) => {
                 <Typography variant="h5">{description}</Typography>
               </Container>
             </Box>
+          </Grid>
+          <Grid item md={12} lg={4}>
+            <Hidden smDown>
+              <Box position="relative" color="white" m={2}>
+                <Typography variant="h4" align="center" gutterBottom>
+                  Newest properties
+                  <Underliner primary={true}></Underliner>
+                </Typography>
+              </Box>
+              <Hidden mdDown>
+                <TopProperties items={items}></TopProperties>
+              </Hidden>
+              <Hidden lgUp>
+                <TopPropertiesHorizontal
+                  items={items}
+                ></TopPropertiesHorizontal>
+              </Hidden>
+            </Hidden>
+          </Grid>
+          <Grid item sm={12}>
             <Box
               textAlign="center"
               display="flex"
@@ -133,30 +145,6 @@ const Header = ({ siteTitle, subTitle, description }) => {
                 </a>
               </div>
             </Box>
-          </Grid>
-          <Grid item md={12} lg={5}>
-            <Hidden smDown>
-              <Box>
-                <Box style={{ maxWdith: "80%" }}>
-                  <Box>
-                    <Hidden smDown>
-                      <Hidden mdDown>
-                        <Grid item>
-                          <TopProperties items={items}></TopProperties>
-                        </Grid>
-                      </Hidden>
-                      <Hidden lgUp>
-                        <Grid item>
-                          <TopPropertiesHorizontal
-                            items={items}
-                          ></TopPropertiesHorizontal>
-                        </Grid>
-                      </Hidden>
-                    </Hidden>
-                  </Box>
-                </Box>
-              </Box>
-            </Hidden>
           </Grid>
         </Grid>
       </Container>

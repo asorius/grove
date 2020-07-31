@@ -1,6 +1,5 @@
 import React from "react"
-import { Paper, Divider, Box, Typography } from "@material-ui/core"
-import Underliner from "./styled/underliner"
+import { Paper, Divider, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import StyledCardSmall from "./styled/styledCardSmall"
 import { Link } from "gatsby"
@@ -43,13 +42,7 @@ export default function TopHorizontal({ items }) {
   ] = React.useState(0)
   const [moved, setMoved] = React.useState(0)
   return (
-    <Paper elevation={3} className={classes.outer}>
-      <Box style={{ position: "relative" }}>
-        <Typography variant="h5" align="center" gutterBottom>
-          Newest properties
-          <Underliner></Underliner>
-        </Typography>
-      </Box>
+    <Box className={classes.outer}>
       <Paper
         className={classes.root}
         onMouseDown={e => {
@@ -60,7 +53,6 @@ export default function TopHorizontal({ items }) {
         }}
         onMouseMove={e => {
           if (mouseScrollActive) {
-            console.log("active")
             const currentMousePosition = e.pageX
             const movedDistance = startingMousePosition - currentMousePosition
             setMoved(movedDistance)
@@ -79,7 +71,6 @@ export default function TopHorizontal({ items }) {
         }}
         onClick={e => {
           if (moved) {
-            console.log("click")
             e.preventDefault()
           }
         }}
@@ -109,6 +100,6 @@ export default function TopHorizontal({ items }) {
           }
         })}
       </Paper>
-    </Paper>
+    </Box>
   )
 }

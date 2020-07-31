@@ -1,6 +1,6 @@
 import React from "react"
 
-export default function Underliner({ h = 4 }) {
+export default function Underliner({ h = 4, primary }) {
   return (
     <div
       style={{
@@ -8,7 +8,7 @@ export default function Underliner({ h = 4 }) {
         height: h,
         width: "35%",
         margin: "0 auto",
-        background: "#6a41f2",
+        background: `${primary ? "#FFC11E" : "#6a41f2"}`,
         borderRadius: 5,
         left: "50%",
         transform: "translateX(-50%)",
