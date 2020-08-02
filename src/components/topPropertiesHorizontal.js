@@ -14,6 +14,8 @@ const useStyles = makeStyles({
     flexWrap: "nowrap",
     margin: "0 auto",
     boxShadow: "none",
+    background: "rgba(255,255,255,.3)",
+
     "&::-webkit-scrollbar": {
       width: 10,
       height: 10,
@@ -24,7 +26,6 @@ const useStyles = makeStyles({
     },
     "&::-webkit-scrollbar-thumb": {
       background: "#6a41f2",
-      outline: "1px solid red",
       borderRadius: 6,
     },
   },
@@ -55,30 +56,32 @@ export default function TopHorizontal({ items }) {
           if (mouseScrollActive) {
             const currentMousePosition = e.pageX
             const movedDistance = startingMousePosition - currentMousePosition
-            setMoved(movedDistance)
             e.currentTarget.scrollLeft =
               scrollValueAtTheStartOfDrag + movedDistance
           }
         }}
         onMouseUp={e => {
           setMouseScrollActive(false)
-          if (moved) {
-            e.preventDefault()
-          }
+          const currentMousePosition = e.pageX
+          const movedDistance = startingMousePosition - currentMousePosition
+          setMoved(movedDistance)
         }}
         onMouseLeave={e => {
           setMouseScrollActive(false)
-        }}
-        onClick={e => {
-          if (moved) {
-            e.preventDefault()
-          }
         }}
       >
         {items.map(({ node }, i) => {
           if (i < 5) {
             return (
-              <Link to={`/${node.contentful_id}`} key={i + 200}>
+              <Link
+                to={`/${node.contentful_id}`}
+                key={i + 200}
+                onClick={e => {
+                  if (moved) {
+                    e.preventDefault()
+                  }
+                }}
+              >
                 <StyledCardSmall
                   key={i}
                   img={node.images[0].fluid}
@@ -89,7 +92,15 @@ export default function TopHorizontal({ items }) {
             )
           } else {
             return (
-              <Link to={`/${node.contentful_id}`} key={i + 200}>
+              <Link
+                to={`/${node.contentful_id}`}
+                key={i + 200}
+                onClick={e => {
+                  if (moved) {
+                    e.preventDefault()
+                  }
+                }}
+              >
                 <StyledCardSmall
                   key={i}
                   img={node.images[0].fluid}

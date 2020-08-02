@@ -1,5 +1,5 @@
 import React from "react"
-import { Paper, Divider, Box } from "@material-ui/core"
+import { Paper, Divider } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import StyledCardSmall from "./styled/styledCardSmall"
 import { Link } from "gatsby"
@@ -12,7 +12,8 @@ const useStyles = makeStyles({
     flexDirection: "column",
     flexWrap: "nowrap",
     padding: "1rem",
-    background: "rgba(255,255,255,.8)",
+    background: "rgba(255,255,255,.3)",
+    marginTop: "2rem",
     "&::-webkit-scrollbar": {
       width: 10,
     },
@@ -21,8 +22,7 @@ const useStyles = makeStyles({
       borderRadius: 6,
     },
     "&::-webkit-scrollbar-thumb": {
-      background: "grey",
-      outline: "1px solid red",
+      background: "#6a41f2",
       borderRadius: 6,
     },
   },
@@ -37,65 +37,73 @@ export default function TopProperties({ items }) {
   ] = React.useState(0)
   const [moved, setMoved] = React.useState(0)
   return (
-    <Box>
-      <Paper
-        elevation={3}
-        className={classes.root}
-        onMouseDown={e => {
-          e.preventDefault()
-          setMouseScrollActive(true)
-          setStartingMousePosition(e.pageY)
-          setscrollValueAtTheStartOfDrag(e.currentTarget.scrollTop)
-        }}
-        onMouseMove={e => {
-          if (mouseScrollActive) {
-            const currentMousePosition = e.pageY
-            const movedDistance = startingMousePosition - currentMousePosition
-            setMoved(movedDistance)
-            e.currentTarget.scrollTop =
-              scrollValueAtTheStartOfDrag + movedDistance
-          }
-        }}
-        onMouseUp={e => {
-          setMouseScrollActive(false)
-          if (moved) {
-            e.preventDefault()
-          }
-        }}
-        onMouseLeave={e => {
-          setMouseScrollActive(false)
-        }}
-        onClick={e => {
-          if (moved) {
-            e.preventDefault()
-          }
-        }}
-      >
-        {items.map(({ node }, i) => {
-          if (i < 5) {
-            return (
-              <Link to={node.contentful_id} key={i + 200}>
-                <StyledCardSmall
-                  key={i}
-                  img={node.images[0].fluid}
-                  content={node}
-                />
-                <Divider></Divider>
-              </Link>
-            )
-          } else {
-            return (
-              <Link to={node.contentful_id} key={i + 200}>
-                <StyledCardSmall
-                  key={i}
-                  img={node.images[0].fluid}
-                  content={node}
-                />
-              </Link>
-            )
-          }
-        })}
-      </Paper>
-    </Box>
+    <Paper
+      elevation={3}
+      className={classes.root}
+      onMouseDown={e => {
+        e.preventDefault()
+        setMouseScrollActive(true)
+        setStartingMousePosition(e.pageY)
+        setscrollValueAtTheStartOfDrag(e.currentTarget.scrollTop)
+      }}
+      onMouseMove={e => {
+        if (mouseScrollActive) {
+          const currentMousePosition = e.pageY
+          const movedDistance = startingMousePosition - currentMousePosition
+          e.currentTarget.scrollTop =
+            scrollValueAtTheStartOfDrag + movedDistance
+        }
+      }}
+      onMouseUp={e => {
+        setMouseScrollActive(false)
+        const currentMousePosition = e.pageY
+        const movedDistance = startingMousePosition - currentMousePosition
+        setMoved(movedDistance)
+      }}
+      onMouseLeave={e => {
+        setMouseScrollActive(false)
+      }}
+    >
+      {items.map(({ node }, i) => {
+        if (i < 5) {
+          return (
+            <Link
+              to={node.contentful_id}
+              key={i + 200}
+              onClick={e => {
+                if (moved) {
+                  e.preventDefault()
+                }
+              }}
+            >
+              <StyledCardSmall
+                key={i}
+                img={node.images[0].fluid}
+                content={node}
+              />
+              <Divider></Divider>
+            </Link>
+          )
+        } else {
+          return (
+            <Link
+              to={node.contentful_id}
+              key={i + 200}
+              onClick={e => {
+                if (moved) {
+                  e.preventDefault()
+                }
+              }}
+            >
+              <StyledCardSmall
+                key={i}
+                img={node.images[0].fluid}
+                content={node}
+              />
+            </Link>
+          )
+        }
+      })}
+    </Paper>
   )
 }

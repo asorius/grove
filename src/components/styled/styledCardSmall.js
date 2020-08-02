@@ -10,42 +10,30 @@ import Grid from "@material-ui/core/Grid"
 import Img from "gatsby-image"
 const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: ".5rem",
+    margin: ".5rem",
     minWidth: "20rem",
-    // minHeight: "10rem",
-    // width: "100%",
+    height: "100%",
+    minHeight: "10rem",
+    maxHeight: "12rem",
   },
-  details: {
-    // display: "flex",
-    // flexDirection: "column",
-    // minWdith: "10rem",
-    // width: "40%",
-    // background: "#e2e2e2",
-  },
+
   content: {
-    flex: "1 0 auto",
     display: "grid",
     alignContent: "center",
+    height: "100%",
   },
   cover: {
-    // display: "flex",
-    // alignItems: "flex-end",
-    // justifyContent: "center",
-    // width: "60%",
-  },
-  smallstyles: {
-    //   width: "100%",
-    //   minWidth: "20rem",
-    //   height: "100%",
+    height: "100%",
+    position: "relative",
   },
 }))
 
-export default function PreviewCard({ img, content, lg }) {
+export default function PreviewCard({ img, content }) {
   const classes = useStyles()
   return (
     <Card className={classes.root}>
-      <Grid container>
-        <Grid item sm={4}>
+      <Grid container style={{ height: "100%" }}>
+        <Grid item sm={5}>
           <CardContent className={classes.content}>
             <Typography variant="h5" color="secondary">
               {content.type}
@@ -63,12 +51,8 @@ export default function PreviewCard({ img, content, lg }) {
             </Typography>
           </CardContent>
         </Grid>
-        <Grid item sm={8}>
-          <CardMedia
-            className={classes.cover}
-            title="Click for full details"
-            style={{ position: "relative" }}
-          >
+        <Grid item sm={7}>
+          <CardMedia className={classes.cover} title="Click for full details">
             <div
               style={{
                 position: "absolute",
