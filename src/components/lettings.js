@@ -64,12 +64,13 @@ const Lettings = () => {
                   display: "flex",
                   width: "100%",
                   minHeight: "14rem",
+                  height: "100%",
+                  maxHeight: "25rem",
                 }}
               >
                 <CardMedia
                   style={{
-                    minWidth: "8rem",
-                    width: "100%",
+                    width: "40%",
                     minHeight: "8rem",
                     position: "relative",
                   }}
@@ -99,33 +100,70 @@ const Lettings = () => {
                     style={{ height: "100%" }}
                   ></Img>
                 </CardMedia>
-                <CardContent style={{ width: "100%" }}>
-                  <Typography variant="h5" color="textPrimary">
-                    {node.type}, {node.location}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    gutterBottom
+                <CardContent style={{ width: "60%", padding: 0 }}>
+                  <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    flexDirection="column"
+                    height="100%"
+                    p={1}
                   >
-                    added {Moment(node.createdAt).fromNow()}
-                  </Typography>
-                  <Box>
-                    {node.keyProperties.map((el, i) =>
-                      i < 3 ? (
-                        <Chip
-                          key={i + 500}
-                          label={el}
-                          size="small"
-                          icon={<DoneIcon />}
-                          variant="outlined"
-                          color="secondary"
-                          style={{ margin: ".2rem" }}
-                        />
-                      ) : (
-                        ""
-                      )
-                    )}
+                    <Box
+                      display="flex"
+                      justifyContent="space-around"
+                      flexDirection="column"
+                      height="100%"
+                    >
+                      <Typography variant="h5">
+                        {node.type}, {node.location}
+                      </Typography>
+
+                      <Box>
+                        <Typography
+                          variant="body2"
+                          color="textSecondary"
+                          style={{
+                            display: "inline-block",
+                            width: "100%",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                          }}
+                          gutterBottom
+                        >
+                          {node.comments.comments}
+                        </Typography>
+                      </Box>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        gutterBottom
+                      >
+                        added {Moment(node.createdAt).fromNow()}
+                      </Typography>
+                    </Box>
+                    <Box
+                      display="flex"
+                      flexWrap="wrap"
+                      alignContent="center"
+                      justifyContent="center"
+                    >
+                      {node.keyProperties.map((el, i) =>
+                        i < 3 ? (
+                          <Chip
+                            key={i + 500}
+                            label={el}
+                            size="small"
+                            icon={<DoneIcon />}
+                            variant="outlined"
+                            color="textSecondary"
+                            style={{ margin: ".2rem" }}
+                          />
+                        ) : (
+                          ""
+                        )
+                      )}
+                    </Box>
                   </Box>
                 </CardContent>
               </Card>

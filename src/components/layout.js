@@ -28,7 +28,7 @@ const theme = createMuiTheme({
   },
 })
 
-const Layout = ({ children, page }) => {
+const Layout = ({ children, page, bg }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -40,14 +40,23 @@ const Layout = ({ children, page }) => {
       }
     }
   `)
-
   return (
     <div>
       <ThemeProvider theme={theme}>
         <CssBaseline></CssBaseline>
         <Navbar siteTitle={data.site.siteMetadata.title} parent={page} />
         <div id="back-to-top-anchor"></div>
-        <main>{children}</main>
+        <main
+          style={{
+            background: `url(${bg ? bg : ""})`,
+            backgroundRepeat: "norepeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            height: "100%",
+          }}
+        >
+          {children}
+        </main>
         <ScrollTop>
           <Fab color="secondary" size="large" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />

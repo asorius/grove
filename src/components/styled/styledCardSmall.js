@@ -35,11 +35,9 @@ export default function PreviewCard({ img, content }) {
       <Grid container style={{ height: "100%" }}>
         <Grid item sm={5}>
           <CardContent className={classes.content}>
-            <Typography variant="h5" color="secondary">
-              {content.type}
-            </Typography>
+            <Typography variant="h5">{content.type}</Typography>
 
-            <Typography variant="subtitle2" color="secondary" gutterBottom>
+            <Typography variant="subtitle2" gutterBottom>
               {content.location}
             </Typography>
 

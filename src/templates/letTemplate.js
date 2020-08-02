@@ -12,10 +12,33 @@ import {
 import Layout from "../components/layout"
 import Img from "gatsby-image"
 import SEO from "../components/seo"
+import Map from "../components/individualMap"
+import { makeStyles } from "@material-ui/core/styles"
 
+const useStyles = makeStyles({
+  root: {
+    height: "27rem",
+    maxWidth: "80vw",
+    overflowX: "scroll",
+    display: "flex",
+
+    "&::-webkit-scrollbar": {
+      width: 10,
+    },
+    "&::-webkit-scrollbar-track": {
+      boxShadow: "inset 0 0 6px rgba(0, 0, 0, 0.3)",
+      borderRadius: 6,
+    },
+    "&::-webkit-scrollbar-thumb": {
+      background: "#6a41f2",
+      borderRadius: 6,
+    },
+  },
+})
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
+  const classes = useStyles()
   const [open, setOpen] = React.useState(false)
   const [img, setImg] = React.useState("")
   const [mouseScrollActive, setMouseScrollActive] = React.useState(false)
@@ -49,26 +72,26 @@ export default function Template({
     createdAt,
     type,
     keyProperties,
+    maplocation,
   } = contentfulProperty
   return (
-    <Layout page={"let"}>
+    <Layout page={"let"} bg={images[0].fluid.src}>
       <SEO
         title={`${
           type.toString().charAt(0).toUpperCase() + type.toString().slice(1)
         } | ${location}`}
       />
 
-      <Container style={{ padding: "2rem" }}>
+      <Container
+        style={{
+          padding: "5rem",
+        }}
+      >
         <Paper
           style={{ display: "grid", alignContent: "center", padding: "2rem" }}
         >
           <Box
-            style={{
-              height: "27rem",
-              maxWidth: "80vw",
-              overflowX: "scroll",
-              display: "flex",
-            }}
+            className={classes.root}
             onMouseDown={e => {
               e.preventDefault()
               setMouseScrollActive(true)
@@ -80,7 +103,6 @@ export default function Template({
                 const currentMousePosition = e.pageX
                 const movedDistance =
                   startingMousePosition - currentMousePosition
-                setMoved(movedDistance)
                 e.currentTarget.scrollLeft =
                   scrollValueAtTheStartOfDrag + movedDistance
               }
@@ -88,6 +110,8 @@ export default function Template({
             onMouseUp={e => {
               setMouseScrollActive(false)
               const currentMousePosition = e.pageX
+              const movedDistance = startingMousePosition - currentMousePosition
+              setMoved(movedDistance)
               if (startingMousePosition === currentMousePosition) {
                 setMoved(0)
               }
@@ -117,12 +141,16 @@ export default function Template({
               </div>
             ))}
           </Box>
-          <Grid container>
+          <Grid container style={{ padding: "2rem" }}>
             <Grid item xs={12} lg={8}>
               <Typography variant="h4" gutterBottom align="center">
                 {type} at a price of {price} pcm. Located in {location}.
               </Typography>
-              <Typography variant="body1" align="center">
+              <Typography
+                variant="body1"
+                align="center"
+                style={{ maxWidth: "80%", margin: "0 auto" }}
+              >
                 {comments.comments}
               </Typography>
             </Grid>
@@ -134,6 +162,22 @@ export default function Template({
                   placeContent: "center",
                 }}
               >
+                {" "}
+                <Paper
+                  style={{
+                    height: "20rem",
+                    width: "100%",
+                    position: "relative",
+                  }}
+                >
+                  {maplocation ? (
+                    <Map
+                      coords={{ lat: maplocation.lat, lng: maplocation.lon }}
+                    ></Map>
+                  ) : (
+                    "Map not available."
+                  )}
+                </Paper>
                 <Typography variant="h5" align="center" gutterBottom>
                   Additional information:
                 </Typography>
@@ -143,7 +187,6 @@ export default function Template({
                 <Typography variant="body2" align="center">
                   Available from: {available}
                 </Typography>
-
                 <Box p={2}>
                   <Typography
                     variant="body2"
@@ -159,23 +202,19 @@ export default function Template({
                       label={`${beds} bed(s)`}
                       style={{ margin: ".2rem" }}
                     />
-                    {parking ? (
+                    {parking && (
                       <Chip
                         color="primary"
                         label="parking"
                         style={{ margin: ".2rem" }}
                       />
-                    ) : (
-                      ""
                     )}
-                    {shared ? (
+                    {shared && (
                       <Chip
                         color="primary"
                         label="shared house"
                         style={{ margin: ".2rem" }}
                       />
-                    ) : (
-                      ""
                     )}
                     <Chip
                       color="primary"
@@ -239,6 +278,10 @@ export const pageQuery = graphql`
       type
       keyProperties
       createdAt(formatString: "DD MMMM YYYY")
+      maplocation {
+        lat
+        lon
+      }
     }
   }
 `

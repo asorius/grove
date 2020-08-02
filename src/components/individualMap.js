@@ -28,21 +28,12 @@ const MyMapComponent = compose(
   withGoogleMap
 )(props => (
   <GoogleMap
-    defaultZoom={9}
-    defaultCenter={{ lat: 52.9, lng: -1.6 }}
-    options={{
-      zoomControl: false,
-      mapTypeControl: false,
-      scaleControl: false,
-      streetViewControl: false,
-      rotateControl: false,
-      fullscreenControl: false,
-    }}
+    defaultZoom={15}
+    defaultCenter={{ lat: props.coords.lat, lng: props.coords.lng }}
   >
-    {props.isMarkerShown && (
+    {props.coords && (
       <>
-        <Marker position={{ lat: 52.9566732, lng: -1.1568329 }} />
-        <Marker position={{ lat: 52.900269, lng: -1.858195 }} />
+        <Marker position={{ lat: props.coords.lat, lng: props.coords.lng }} />
       </>
     )}
   </GoogleMap>

@@ -12,13 +12,8 @@ export default function LayoutIndividual({
   bg,
 }) {
   return (
-    <Container
-      style={{
-        paddingTop: "2rem",
-      }}
-      id={id}
-    >
-      <Paper
+    <Container id={id}>
+      <Box
         style={{
           background:
             bg === 1
@@ -26,11 +21,11 @@ export default function LayoutIndividual({
               : bg === 2
               ? `url('${lettingsbg}')`
               : `url('${bgimg2}')`,
-          backgroundColor: "#fff",
+          backgroundColor: "#f0e8d64a",
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
           backgroundPosition: `${bg === 1 ? "right" : "left"}`,
-          minHeight: "95vh",
+          minHeight: "100vh",
         }}
       >
         <Box p={4}>
@@ -54,7 +49,7 @@ export default function LayoutIndividual({
         <Box p={1} m={2}>
           {children}
         </Box>
-      </Paper>
+      </Box>
     </Container>
   )
 }

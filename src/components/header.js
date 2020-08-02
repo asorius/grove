@@ -122,13 +122,14 @@ const Header = ({ siteTitle, subTitle, description }) => {
               </Hidden>
             </Hidden>
           </Grid>
-          <Grid item sm={12}>
+          <Grid item sm={12} style={{ width: "100%" }}>
             <Box
               textAlign="center"
               display="flex"
-              height="15%"
+              height="50%"
               flexDirection="column"
               justifyContent="space-around"
+              width="100%"
             >
               <Box p={1}>
                 <a href="#Lettings">
