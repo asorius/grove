@@ -58,9 +58,10 @@ const Header = ({ siteTitle, subTitle, description }) => {
         display: "grid",
         placeItems: "center",
         minHeight: "100vh",
+        paddingTop: "7rem",
       }}
     >
-      <Container style={{ height: "100%", paddingTop: "7rem" }}>
+      <Container style={{ height: "100%" }}>
         <Grid container spacing={0} style={{ height: "100%" }}>
           <Grid item md={12} lg={8}>
             <Box textAlign="center">
@@ -96,12 +97,22 @@ const Header = ({ siteTitle, subTitle, description }) => {
               flexDirection="column"
               justifyContent="space-around"
             >
-              <Typography variant="h4" gutterBottom>
-                {subTitle}
-              </Typography>
-              <Container>
-                <Typography variant="h5">{description}</Typography>
-              </Container>
+              <Hidden xsDown>
+                <Typography variant="h4" gutterBottom>
+                  {subTitle}
+                </Typography>
+                <Container>
+                  <Typography variant="h5">{description}</Typography>
+                </Container>
+              </Hidden>
+              <Hidden smUp>
+                <Typography variant="h5" gutterBottom>
+                  {subTitle}
+                </Typography>
+                <Container>
+                  <Typography variant="subtitle">{description}</Typography>
+                </Container>
+              </Hidden>
             </Box>
           </Grid>
           <Grid item md={12} lg={4}>

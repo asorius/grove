@@ -8,6 +8,7 @@ import {
   Divider,
   Card,
   CardContent,
+  Grid,
 } from "@material-ui/core"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import Underliner from "./underliner"
@@ -22,77 +23,97 @@ export default function Item({
 }) {
   return (
     <Box height="100%">
-      <Card style={{ height: "100%", padding: "1rem 2rem " }} elevation={5}>
+      <Card style={{ height: "100%" }} elevation={5}>
         <CardContent
           style={{
             height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
           }}
         >
-          <Typography
-            variant="h5"
-            component="h2"
-            align="center"
-            color={headerColor}
-            gutterBottom
-            style={{ position: "relative" }}
+          <Grid
+            container
+            direction="column"
+            justify="space-between"
+            alignItems="center"
           >
-            {header}
-            <Underliner h={2}></Underliner>
-          </Typography>
-          <Typography align="center" style={{ padding: "1rem" }}>
-            {description}
-          </Typography>
-          <Accordion>
-            <Box bgcolor={`${openingColor}.light`}>
-              <AccordionSummary
-                expandIcon={
-                  <ExpandMoreIcon
-                    color={openingColor === "primary" ? "secondary" : "primary"}
-                    fontSize="large"
-                  />
-                }
-                aria-controls="panel1a-content"
-                id="panel1a-header"
+            <Grid item>
+              <Typography
+                variant="h5"
+                component="h2"
                 align="center"
+                color={headerColor}
+                gutterBottom
+                style={{ position: "relative" }}
               >
-                <Typography align="center" style={{ width: "100%" }}>
-                  {openingText}
-                </Typography>
-              </AccordionSummary>
-            </Box>
-            <AccordionDetails
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-evenly",
-                background: bgcolor,
-              }}
-            >
-              {iterableList.map((el, i) => {
-                if (i < iterableList.length - 1) {
-                  return (
-                    <Box p={1} key={i + 20}>
-                      <Typography variant="body2" gutterBottom align="center">
-                        {el}
-                      </Typography>
-                      <Divider light />
-                    </Box>
-                  )
-                } else {
-                  return (
-                    <Box p={1} key={i + 20}>
-                      <Typography variant="body2" gutterBottom align="center">
-                        {el}
-                      </Typography>
-                    </Box>
-                  )
-                }
-              })}
-            </AccordionDetails>
-          </Accordion>
+                {header}
+                <Underliner h={2}></Underliner>
+              </Typography>
+            </Grid>
+            <Grid item md={10}>
+              <Typography align="center" style={{ padding: "1rem" }}>
+                {description}
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Accordion>
+                <Box bgcolor={`${openingColor}.light`}>
+                  <AccordionSummary
+                    expandIcon={
+                      <ExpandMoreIcon
+                        color={
+                          openingColor === "primary" ? "secondary" : "primary"
+                        }
+                        fontSize="large"
+                      />
+                    }
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                    align="center"
+                  >
+                    <Typography align="center" style={{ width: "100%" }}>
+                      {openingText}
+                    </Typography>
+                  </AccordionSummary>
+                </Box>
+                <AccordionDetails
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-evenly",
+                    background: bgcolor,
+                  }}
+                >
+                  {iterableList.map((el, i) => {
+                    if (i < iterableList.length - 1) {
+                      return (
+                        <Box p={1} key={i + 20}>
+                          <Typography
+                            variant="body2"
+                            gutterBottom
+                            align="center"
+                          >
+                            {el}
+                          </Typography>
+                          <Divider light />
+                        </Box>
+                      )
+                    } else {
+                      return (
+                        <Box p={1} key={i + 20}>
+                          <Typography
+                            variant="body2"
+                            gutterBottom
+                            align="center"
+                          >
+                            {el}
+                          </Typography>
+                        </Box>
+                      )
+                    }
+                  })}
+                </AccordionDetails>
+              </Accordion>
+            </Grid>
+          </Grid>
         </CardContent>
       </Card>
     </Box>
