@@ -37,7 +37,7 @@ const Navbar = ({ siteTitle, parent }) => {
   return (
     <>
       <Slide appear={false} direction="down" in={!trigger}>
-        <AppBar style={{ background: "#0000008a" }}>
+        <AppBar style={{ background: "#000000b0" }}>
           <Container>
             <Toolbar
               style={{

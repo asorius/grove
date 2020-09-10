@@ -28,7 +28,7 @@ export default function HorizontalNavigation({ parent }) {
     >
       {navbarList.map((item, i) =>
         parent ? (
-          <Link to={`/#${item}`}>
+          <Link to={`/#${item}`} key={i + 400}>
             <Button size="small" className={classes.root}>
               <Typography variant="body1">{item}</Typography>
             </Button>

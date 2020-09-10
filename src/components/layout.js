@@ -49,6 +49,7 @@ const Layout = ({ children, page, bg }) => {
         <main
           style={{
             background: `url(${bg ? bg : ""})`,
+            backgroundColor: "#f0e8d64a",
             backgroundRepeat: "norepeat",
             backgroundPosition: "center",
             backgroundSize: "cover",

@@ -21,7 +21,7 @@ export default function LayoutIndividual({
               : bg === 2
               ? `url('${lettingsbg}')`
               : `url('${bgimg2}')`,
-          backgroundColor: "#f0e8d64a",
+          backgroundColor: "white",
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
           backgroundPosition: `${bg === 1 ? "right" : "left"}`,

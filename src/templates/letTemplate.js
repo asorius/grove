@@ -17,11 +17,15 @@ import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles({
   root: {
+    width: "100%",
     height: "27rem",
     maxWidth: "80vw",
     overflowX: "scroll",
     display: "flex",
-
+    overscrollBehaviorX: "contain",
+    scrollSnapType: " both mandatory",
+    position: "relative",
+    "& > div": { scrollSnapAlign: "center" },
     "&::-webkit-scrollbar": {
       width: 10,
     },
@@ -48,6 +52,8 @@ export default function Template({
     setscrollValueAtTheStartOfDrag,
   ] = React.useState(0)
   const [moved, setMoved] = React.useState(0)
+  const scrollableContainer = React.createRef()
+
   const handleOpen = () => {
     setOpen(true)
   }
@@ -74,12 +80,40 @@ export default function Template({
     keyProperties,
     maplocation,
   } = contentfulProperty
+  const [currentid, setid] = React.useState(0)
+  const refs = images.map((el, idx) => React.createRef())
+  const carousel = idtodisplaynext => {
+    if (idtodisplaynext >= refs.length) {
+      refs[0].current.scrollIntoView({
+        block: "end",
+        behavior: "smooth",
+        inline: "center",
+      })
+      setid(0)
+    } else if (idtodisplaynext < 0) {
+      console.log("should go to last pic")
+      refs[refs.length - 1].current.scrollIntoView({
+        block: "end",
+        behavior: "smooth",
+        inline: "center",
+      })
+      setid(refs.length - 1)
+    } else {
+      refs[idtodisplaynext].current.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "end",
+      })
+      setid(idtodisplaynext)
+    }
+    console.log(currentid)
+  }
   return (
     <Layout page={"let"} bg={images[0].fluid.src}>
       <SEO
         title={`${
           type.toString().charAt(0).toUpperCase() + type.toString().slice(1)
-        } | ${location}`}
+        } in ${location}`}
       />
 
       <Container
@@ -88,59 +122,101 @@ export default function Template({
         }}
       >
         <Paper
-          style={{ display: "grid", alignContent: "center", padding: "2rem" }}
+          style={{
+            padding: "2rem 0",
+            position: "relative",
+          }}
         >
-          <Box
-            className={classes.root}
-            onMouseDown={e => {
-              e.preventDefault()
-              setMouseScrollActive(true)
-              setStartingMousePosition(e.pageX)
-              setscrollValueAtTheStartOfDrag(e.currentTarget.scrollLeft)
-            }}
-            onMouseMove={e => {
-              if (mouseScrollActive) {
-                const currentMousePosition = e.pageX
-                const movedDistance =
-                  startingMousePosition - currentMousePosition
-                e.currentTarget.scrollLeft =
-                  scrollValueAtTheStartOfDrag + movedDistance
-              }
-            }}
-            onMouseUp={e => {
-              setMouseScrollActive(false)
-              const currentMousePosition = e.pageX
-              const movedDistance = startingMousePosition - currentMousePosition
-              setMoved(movedDistance)
-              if (startingMousePosition === currentMousePosition) {
-                setMoved(0)
-              }
-            }}
-            onMouseLeave={e => {
-              setMouseScrollActive(false)
-            }}
-          >
-            {images.map((el, i) => (
-              <div
-                style={{
-                  minWidth: "30rem",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                  margin: ".5rem",
-                }}
-                onClick={() => {
-                  if (moved === 0) {
-                    handleOpen()
-                    chooseImg(el.fluid)
-                  }
-                }}
-                key={i + 40}
-              >
-                <Img fluid={el.fluid} style={{ height: "100%" }}></Img>
-              </div>
-            ))}
-          </Box>
+          <div style={{ position: "relative", margin: "0 auto", width: "90%" }}>
+            <button
+              id="scrollbtn"
+              style={{
+                background: "red",
+                height: "10%",
+                width: "5rem",
+                zIndex: 50,
+                position: "absolute",
+                left: 0,
+                top: "50%",
+                transform: "translateY(-50%)",
+              }}
+              onClick={e => carousel(currentid - 1)}
+            >
+              {" "}
+              left
+            </button>
+            <Box
+              className={classes.root}
+              ref={scrollableContainer}
+              // onMouseDown={e => {
+              //   e.preventDefault()
+              //   setMouseScrollActive(true)
+              //   setStartingMousePosition(e.pageX)
+              //   setscrollValueAtTheStartOfDrag(e.currentTarget.scrollLeft)
+              // }}
+              // onMouseMove={e => {
+              //   if (mouseScrollActive) {
+              //     const currentMousePosition = e.pageX
+              //     const movedDistance =
+              //       startingMousePosition - currentMousePosition
+              //     e.currentTarget.scrollLeft =
+              //       scrollValueAtTheStartOfDrag + movedDistance
+              //   }
+              // }}
+              // onMouseUp={e => {
+              //   setMouseScrollActive(false)
+              //   const currentMousePosition = e.pageX
+              //   const movedDistance = startingMousePosition - currentMousePosition
+              //   setMoved(movedDistance)
+              //   if (startingMousePosition === currentMousePosition) {
+              //     setMoved(0)
+              //   }
+              // }}
+              // onMouseLeave={e => {
+              //   setMouseScrollActive(false)
+              // }}
+            >
+              {images.map((el, i) => (
+                <div
+                  style={{
+                    minWidth: "50rem",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    margin: ".5rem",
+                  }}
+                  ref={refs[i]}
+                  onClick={() => {
+                    if (moved === 0) {
+                      handleOpen()
+                      chooseImg(el.fluid)
+                    }
+                  }}
+                  key={i + 8000}
+                >
+                  <Img fluid={el.fluid} style={{ height: "100%" }}></Img>
+                </div>
+              ))}
+            </Box>
+            <button
+              id="scrollbtn"
+              style={{
+                background: "red",
+                height: "10%",
+                width: "5rem",
+                zIndex: 50,
+                position: "absolute",
+                top: "50%",
+                transform: "translateY(-50%)",
+                left: "90%",
+              }}
+              onClick={e => carousel(currentid + 1)}
+            >
+              {" "}
+              right
+            </button>
+          </div>
+
           <Grid container style={{ padding: "2rem" }}>
             <Grid item xs={12} lg={8}>
               <Typography variant="h4" gutterBottom align="center">
@@ -244,6 +320,7 @@ export default function Template({
         <div
           style={{
             width: "75vw",
+            height: "75vh",
             margin: "0 auto ",
             marginTop: "5rem",
             border: "none",

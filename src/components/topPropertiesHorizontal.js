@@ -82,11 +82,7 @@ export default function TopHorizontal({ items }) {
                   }
                 }}
               >
-                <StyledCardSmall
-                  key={i}
-                  img={node.images[0].fluid}
-                  content={node}
-                />
+                <StyledCardSmall img={node.images[0].fluid} content={node} />
                 <Divider orientation="vertical" flexItem></Divider>
               </Link>
             )
@@ -101,11 +97,7 @@ export default function TopHorizontal({ items }) {
                   }
                 }}
               >
-                <StyledCardSmall
-                  key={i}
-                  img={node.images[0].fluid}
-                  content={node}
-                />
+                <StyledCardSmall img={node.images[0].fluid} content={node} />
               </Link>
             )
           }
