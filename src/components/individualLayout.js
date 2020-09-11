@@ -1,5 +1,5 @@
 import React from "react"
-import { Paper, Typography, Box, Container, Grid } from "@material-ui/core"
+import { Typography, Box, Container, Grid } from "@material-ui/core"
 import Underliner from "./styled/underliner"
 import bgimg from "../images/undraw_select_house_qbag.svg"
 import bgimg2 from "../images/phone.svg"
