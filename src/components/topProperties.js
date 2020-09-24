@@ -1,16 +1,13 @@
 import React from "react"
-import { Paper, Divider } from "@material-ui/core"
+import { Paper, Divider, Grid } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import StyledCardSmall from "./styled/styledCardSmall"
 import { Link } from "gatsby"
 const useStyles = makeStyles({
   root: {
-    maxHeight: "35rem",
+    height: "80%",
     overflowY: "auto ",
     overflowX: " auto",
-    display: "flex",
-    flexDirection: "column",
-    flexWrap: "nowrap",
     padding: "1rem",
     background: "rgba(255,255,255,.3)",
     marginTop: "2rem",
@@ -64,46 +61,50 @@ export default function TopProperties({ items }) {
         setMouseScrollActive(false)
       }}
     >
-      {items.map(({ node }, i) => {
-        if (i < 5) {
-          return (
-            <Link
-              to={node.contentful_id}
-              key={i + 200}
-              onClick={e => {
-                if (moved) {
-                  e.preventDefault()
-                }
-              }}
-            >
-              <StyledCardSmall
-                key={i}
-                img={node.images[0].fluid}
-                content={node}
-              />
-              <Divider></Divider>
-            </Link>
-          )
-        } else {
-          return (
-            <Link
-              to={node.contentful_id}
-              key={i + 200}
-              onClick={e => {
-                if (moved) {
-                  e.preventDefault()
-                }
-              }}
-            >
-              <StyledCardSmall
-                key={i}
-                img={node.images[0].fluid}
-                content={node}
-              />
-            </Link>
-          )
-        }
-      })}
+      <Grid container direction="column" spacing={2}>
+        {items.map(({ node }, i) => {
+          if (i < 5) {
+            return (
+              <Grid item key={i + 200}>
+                <Link
+                  to={node.contentful_id}
+                  onClick={e => {
+                    if (moved) {
+                      e.preventDefault()
+                    }
+                  }}
+                >
+                  <StyledCardSmall
+                    key={i}
+                    img={node.images[0].fluid}
+                    content={node}
+                  />
+                  <Divider light={true}></Divider>
+                </Link>
+              </Grid>
+            )
+          } else {
+            return (
+              <Grid item key={i + 200}>
+                <Link
+                  to={node.contentful_id}
+                  onClick={e => {
+                    if (moved) {
+                      e.preventDefault()
+                    }
+                  }}
+                >
+                  <StyledCardSmall
+                    key={i}
+                    img={node.images[0].fluid}
+                    content={node}
+                  />
+                </Link>
+              </Grid>
+            )
+          }
+        })}
+      </Grid>
     </Paper>
   )
 }

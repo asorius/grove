@@ -26,7 +26,6 @@ const IndexPage = ({ title, subTitle, description }) => {
         siteTitle={data.site.siteMetadata.title}
         subTitle={data.site.siteMetadata.subTitle}
         description={data.site.siteMetadata.description}
-        style={{ minHeight: "100%" }}
         id="Home"
       ></Header>
       <Services></Services>

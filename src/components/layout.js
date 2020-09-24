@@ -8,8 +8,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import { createMuiTheme } from "@material-ui/core/styles"
-import { ThemeProvider } from "@material-ui/styles"
+import {
+  createMuiTheme,
+  ThemeProvider,
+  responsiveFontSizes,
+} from "@material-ui/core/styles"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import "./layout.css"
 import Navbar from "./navbar"
@@ -17,7 +20,7 @@ import Navbar from "./navbar"
 import Fab from "@material-ui/core/Fab"
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp"
 import ScrollTop from "./styled/scrollTop"
-const theme = createMuiTheme({
+let theme = createMuiTheme({
   palette: {
     primary: {
       main: "#FFC11E",
@@ -27,7 +30,7 @@ const theme = createMuiTheme({
     },
   },
 })
-
+theme = responsiveFontSizes(theme)
 const Layout = ({ children, page, bg }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -54,6 +57,7 @@ const Layout = ({ children, page, bg }) => {
             backgroundPosition: "center",
             backgroundSize: "cover",
             height: "100%",
+            maxWidth: "100vw",
           }}
         >
           {children}

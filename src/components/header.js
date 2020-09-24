@@ -48,6 +48,7 @@ const Header = ({ siteTitle, subTitle, description }) => {
     `
   )
   return (
+    // div is only for the background image to cover screen fully
     <div
       style={{
         backgroundImage: `url('${HeroBg}')`,
@@ -55,17 +56,26 @@ const Header = ({ siteTitle, subTitle, description }) => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
-        display: "grid",
-        placeItems: "center",
-        minHeight: "100vh",
         paddingTop: "7rem",
+        height: "100vh",
       }}
     >
+      {/* container is to keep content align within the rest of the page */}
       <Container style={{ height: "100%" }}>
-        <Grid container spacing={0} style={{ height: "100%" }}>
-          <Grid item md={12} lg={8}>
-            <Box textAlign="center">
-              <Hidden mdDown>
+        <Grid container direction="column" style={{ height: "100%" }}>
+          <Grid item container style={{ height: "80%" }}>
+            {/* left side panel, with title, subtitle, and some body text */}
+
+            <Grid
+              item
+              md={12}
+              lg={8}
+              direction="column"
+              justify="center"
+              alignContent="center"
+              alignItems="center"
+            >
+              <Box textAlign="center">
                 <Typography
                   variant="h1"
                   fontWeight="fontWeightBold"
@@ -76,86 +86,67 @@ const Header = ({ siteTitle, subTitle, description }) => {
                 >
                   {siteTitle}
                 </Typography>
-              </Hidden>
-              <Hidden lgUp>
                 <Typography
-                  variant="h2"
-                  color="primary"
-                  align="center"
-                  fontWeight="fontWeightBold"
+                  style={{ color: "white" }}
+                  variant="h4"
                   gutterBottom
                 >
-                  {siteTitle}
-                </Typography>
-              </Hidden>
-            </Box>
-            <Box
-              textAlign="center"
-              color="white"
-              height="50%"
-              display="flex"
-              flexDirection="column"
-              justifyContent="space-around"
-            >
-              <Hidden xsDown>
-                <Typography variant="h4" gutterBottom>
                   {subTitle}
-                </Typography>
-                <Container>
-                  <Typography variant="h5">{description}</Typography>
-                </Container>
-              </Hidden>
-              <Hidden smUp>
-                <Typography variant="h5" gutterBottom>
-                  {subTitle}
-                </Typography>
-                <Container>
-                  <Typography variant="subtitle">{description}</Typography>
-                </Container>
-              </Hidden>
-            </Box>
-          </Grid>
-          <Grid item md={12} lg={4}>
-            <Hidden smDown>
-              <Box position="relative" color="white" m={2}>
-                <Typography variant="h4" align="center" gutterBottom>
-                  Newest properties
-                  <Underliner primary={true}></Underliner>
                 </Typography>
               </Box>
-              <Hidden mdDown>
-                <TopProperties items={items}></TopProperties>
+              <Box
+                textAlign="center"
+                color="white"
+                p={2}
+                width="80%"
+                style={{ margin: "0 auto" }}
+              >
+                <Typography variant="subtitle1">{description}</Typography>
+              </Box>
+            </Grid>
+            {/* right panel with top properties */}
+            <Grid item md={12} lg={4} style={{ height: "100%" }}>
+              {/* hidden smdown to not display on mobile */}
+              <Hidden smDown>
+                <Box position="relative" color="white" m={2}>
+                  <Typography variant="h4" align="center" gutterBottom>
+                    Newest properties
+                    <Underliner primary={true}></Underliner>
+                  </Typography>
+                </Box>
+                <Hidden mdDown>
+                  <TopProperties items={items}></TopProperties>
+                </Hidden>
+                <Hidden lgUp>
+                  <TopPropertiesHorizontal
+                    items={items}
+                  ></TopPropertiesHorizontal>
+                </Hidden>
               </Hidden>
-              <Hidden lgUp>
-                <TopPropertiesHorizontal
-                  items={items}
-                ></TopPropertiesHorizontal>
-              </Hidden>
-            </Hidden>
+            </Grid>
           </Grid>
-          <Grid item sm={12} style={{ width: "100%" }}>
+          {/* call to action buttons */}
+          <Grid item>
             <Box
               textAlign="center"
               display="flex"
-              height="50%"
               flexDirection="column"
               justifyContent="space-around"
-              width="100%"
             >
-              <Box p={1}>
+              <Box p={1} textAlign="center">
                 <a href="#Lettings">
                   <Button variant="contained" color="secondary" size="large">
                     See all properties
                   </Button>
                 </a>
               </Box>
-              <div>
+              <Box p={1} textAlign="center">
                 <a href="#Contacts">
                   <Button variant="contained" color="primary" size="large">
                     Contact us!
                   </Button>
                 </a>
-              </div>
+              </Box>
             </Box>
           </Grid>
         </Grid>
