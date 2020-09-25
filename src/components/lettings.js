@@ -130,7 +130,6 @@ const Lettings = () => {
                             <Box>
                               <Typography
                                 variant="body2"
-                                color="textSecondary"
                                 style={{
                                   display: "inline-block",
                                   width: "100%",
@@ -143,11 +142,7 @@ const Lettings = () => {
                                 {node.comments.comments}
                               </Typography>
                             </Box>
-                            <Typography
-                              variant="body2"
-                              color="textSecondary"
-                              gutterBottom
-                            >
+                            <Typography variant="body2" gutterBottom>
                               added {Moment(node.createdAt).fromNow()}
                             </Typography>
                           </Box>
@@ -165,7 +160,6 @@ const Lettings = () => {
                                   size="small"
                                   icon={<DoneIcon />}
                                   variant="outlined"
-                                  color="textSecondary"
                                   style={{ margin: ".2rem" }}
                                 />
                               ) : (
@@ -263,7 +257,6 @@ const Lettings = () => {
                             <Box>
                               <Typography
                                 variant="body2"
-                                color="textSecondary"
                                 style={{
                                   display: "inline-block",
                                   width: "100%",
@@ -276,11 +269,7 @@ const Lettings = () => {
                                 {node.comments.comments}
                               </Typography>
                             </Box>
-                            <Typography
-                              variant="body2"
-                              color="textSecondary"
-                              gutterBottom
-                            >
+                            <Typography variant="body2" gutterBottom>
                               added {Moment(node.createdAt).fromNow()}
                             </Typography>
                           </Box>
@@ -298,7 +287,6 @@ const Lettings = () => {
                                   size="small"
                                   icon={<DoneIcon />}
                                   variant="outlined"
-                                  color="textSecondary"
                                   style={{ margin: ".2rem" }}
                                 />
                               ) : (

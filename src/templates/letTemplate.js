@@ -199,7 +199,7 @@ export default function Template({
                     handleOpen()
                     chooseImg(el.fluid)
                   }}
-                  key={i + 8000}
+                  key={i + 9000}
                 >
                   <Img fluid={el.fluid} style={{ height: "100%" }}></Img>
                 </div>
@@ -239,11 +239,7 @@ export default function Template({
                   Available from: {available}
                 </Typography>
                 <Box p={2}>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    align="center"
-                  >
+                  <Typography variant="body2" align="center">
                     Key features:
                   </Typography>
                   <Box p={2} textAlign="center">

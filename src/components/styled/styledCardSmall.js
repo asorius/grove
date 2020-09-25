@@ -41,10 +41,10 @@ export default function PreviewCard({ img, content }) {
               {content.location}
             </Typography>
 
-            <Typography variant="caption" color="textSecondary" gutterBottom>
+            <Typography variant="caption" gutterBottom>
               {content.shared ? "sharehouse" : ""}
             </Typography>
-            <Typography variant="body2" color="textSecondary" gutterBottom>
+            <Typography variant="body2" gutterBottom>
               added {Moment(content.createdAt).fromNow()}
             </Typography>
           </CardContent>
@@ -78,66 +78,3 @@ export default function PreviewCard({ img, content }) {
     </Card>
   )
 }
-
-// export default function PreviewCard({ img, content, lg }) {
-//   const classes = useStyles()
-//   return (
-//     <div className={classes.smallstyles}>
-//       {/* <Button style={{ textTransform: "none" }} fullWidth> */}
-//       <Card className={classes.root}>
-//         {/* <div className={classes.details}> */}
-//         <Grid container>
-//           <Grid item lg={4}>
-//             <CardContent className={classes.content}>
-//               <Typography variant="h5" color="secondary">
-//                 {content.type}
-//               </Typography>
-
-//               <Typography variant="subtitle2" color="secondary" gutterBottom>
-//                 {content.location}
-//               </Typography>
-
-//               <Typography variant="caption" color="textSecondary" gutterBottom>
-//                 {content.shared ? "sharehouse" : ""}
-//               </Typography>
-//               <Typography variant="body2" color="textSecondary" gutterBottom>
-//                 added {Moment(content.createdAt).fromNow()}
-//               </Typography>
-//             </CardContent>
-//           </Grid>
-//           <Grid item lg={8}>
-//             <CardMedia
-//               className={classes.cover}
-//               title="Click for full details"
-//               style={{ position: "relative" }}
-//             >
-//               <div
-//                 style={{
-//                   position: "absolute",
-//                   left: ".5rem",
-//                   top: ".5rem",
-//                   backgroundColor: "MEDIUMSEAGREEN",
-//                   borderRadius: ".3rem",
-//                   padding: "0 .5rem",
-//                   zIndex: "30",
-//                   color: "white",
-//                 }}
-//               >
-//                 <Typography variant="h5" display="inline">
-//                   {content.price}{" "}
-//                 </Typography>
-//                 <Typography variant="body2" display="inline">
-//                   {" "}
-//                   pcm
-//                 </Typography>
-//               </div>
-//               <Img fluid={img} style={{ height: "100%", width: "100%" }}></Img>
-//             </CardMedia>
-//           </Grid>
-//         </Grid>
-//         {/* </div> */}
-//       </Card>
-//       {/* </Button> */}
-//     </div>
-//   )
-// }

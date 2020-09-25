@@ -56,25 +56,17 @@ const Header = ({ siteTitle, subTitle, description }) => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
-        paddingTop: "7rem",
+        paddingTop: "5rem",
         height: "100vh",
       }}
     >
       {/* container is to keep content align within the rest of the page */}
       <Container style={{ height: "100%" }}>
         <Grid container direction="column" style={{ height: "100%" }}>
-          <Grid item container style={{ height: "80%" }}>
+          <Grid item container style={{ minHeight: "70%", maxHeight: "80%" }}>
             {/* left side panel, with title, subtitle, and some body text */}
 
-            <Grid
-              item
-              md={12}
-              lg={8}
-              direction="column"
-              justify="center"
-              alignContent="center"
-              alignItems="center"
-            >
+            <Grid item md={12} lg={8}>
               <Box textAlign="center">
                 <Typography
                   variant="h1"
@@ -86,6 +78,7 @@ const Header = ({ siteTitle, subTitle, description }) => {
                 >
                   {siteTitle}
                 </Typography>
+
                 <Typography
                   style={{ color: "white" }}
                   variant="h4"
@@ -101,7 +94,14 @@ const Header = ({ siteTitle, subTitle, description }) => {
                 width="80%"
                 style={{ margin: "0 auto" }}
               >
-                <Typography variant="subtitle1">{description}</Typography>
+                <Hidden xsDown>
+                  <Typography variant="subtitle1">{description}</Typography>
+                </Hidden>
+                <Hidden smUp>
+                  <Typography variant="subtitle1">
+                    Professional property management services.
+                  </Typography>
+                </Hidden>
               </Box>
             </Grid>
             {/* right panel with top properties */}
@@ -135,14 +135,14 @@ const Header = ({ siteTitle, subTitle, description }) => {
             >
               <Box p={1} textAlign="center">
                 <a href="#Lettings">
-                  <Button variant="contained" color="secondary" size="large">
+                  <Button variant="contained" color="secondary" size="medium">
                     See all properties
                   </Button>
                 </a>
               </Box>
               <Box p={1} textAlign="center">
                 <a href="#Contacts">
-                  <Button variant="contained" color="primary" size="large">
+                  <Button variant="contained" color="primary" size="medium">
                     Contact us!
                   </Button>
                 </a>
