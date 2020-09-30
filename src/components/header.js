@@ -63,22 +63,39 @@ const Header = ({ siteTitle, subTitle, description }) => {
       {/* container is to keep content align within the rest of the page */}
       <Container style={{ height: "100%" }}>
         <Grid container direction="column" style={{ height: "100%" }}>
-          <Grid item container style={{ minHeight: "70%", maxHeight: "80%" }}>
+          <Grid
+            item
+            container
+            justify="center"
+            style={{ minHeight: "70%", maxHeight: "80%", textAlign: "center" }}
+          >
             {/* left side panel, with title, subtitle, and some body text */}
 
-            <Grid item md={12} lg={8}>
+            <Grid item lg={8}>
               <Box textAlign="center">
-                <Typography
-                  variant="h1"
-                  fontWeight="fontWeightBold"
-                  fontFamily="Miama"
-                  color="primary"
-                  align="center"
-                  gutterBottom
-                >
-                  {siteTitle}
-                </Typography>
-
+                <Hidden xsDown>
+                  <Typography
+                    variant="h1"
+                    fontFamily="Miama"
+                    color="primary"
+                    align="center"
+                    gutterBottom
+                  >
+                    {siteTitle}
+                  </Typography>
+                </Hidden>
+                <Hidden smUp>
+                  <Typography
+                    variant="h2"
+                    fontFamily="Miama"
+                    color="primary"
+                    align="center"
+                    style={{ fontSize: "3rem", fontWeight: "bold" }}
+                    gutterBottom
+                  >
+                    {siteTitle}
+                  </Typography>
+                </Hidden>
                 <Typography
                   style={{ color: "white" }}
                   variant="h4"
@@ -105,7 +122,7 @@ const Header = ({ siteTitle, subTitle, description }) => {
               </Box>
             </Grid>
             {/* right panel with top properties */}
-            <Grid item md={12} lg={4} style={{ height: "100%" }}>
+            <Grid item lg={4} style={{ height: "100%" }}>
               {/* hidden smdown to not display on mobile */}
               <Hidden smDown>
                 <Box position="relative" color="white" m={2}>
