@@ -3,7 +3,7 @@ require("dotenv").config({
 })
 module.exports = {
   siteMetadata: {
-    title: `Grove Property Solutions`,
+    title: `Grove Property Solutions of a new checkout`,
     subTitle: `We open doors for you`,
     description: `Professional property management services.Grove Property Solutions offers a range of services for house hunters (both personal and corporate), landlords and property investors and tenants.`,
     author: `@Rosart`,
